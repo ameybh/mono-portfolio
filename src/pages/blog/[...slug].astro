@@ -1,0 +1,43 @@
+---
+import ProseLayout from '../../layouts/ProseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+function formatDate(str: string) {
+  return new Date(str).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+}
+
+const tagList = post.data.tags?.split(',').map((t: string) => t.trim()) ?? [];
+---
+<ProseLayout
+  title={post.data.title}
+  description={post.data.summary}
+  backHref="/blog"
+  backLabel="Back to writing"
+  active="writing"
+>
+  <div class="prose-header">
+    <div class="prose-title">{post.data.title}</div>
+    <div class="prose-meta">
+      <span class="prose-date">{formatDate(post.data.publishedAt)}</span>
+      {tagList.length > 0 && (
+        <div class="prose-tags">
+          {tagList.map((tag: string) => <span class="prose-tag">{tag}</span>)}
+        </div>
+      )}
+    </div>
+  </div>
+  <div class="prose-body">
+    <Content />
+  </div>
+</ProseLayout>

@@ -1,0 +1,341 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import MarqueeBand from '../components/MarqueeBand.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog'))
+  .sort((a, b) => new Date(b.data.publishedAt).getTime() - new Date(a.data.publishedAt).getTime())
+  .slice(0, 4);
+
+function formatDate(str: string) {
+  return new Date(str).toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
+}
+---
+<BaseLayout active="work">
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Bengaluru, India · SDE II · AI/ML</div>
+    <h1 class="hero-title">
+      Build AI.<br>
+      Ship fast.<br>
+      <span class="dim">End to end.</span>
+    </h1>
+    <p class="hero-desc">
+      Product engineer with 3 years building AI/ML systems from scratch —
+      video intelligence pipelines, multimodal models, and production
+      microservices. Currently at Tessact. Seeking roles in Germany.
+    </p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn-primary">
+        View my work
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2.5 10.5l8-8M2.5 2.5H10.5v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="#about" class="btn-secondary">Read about me</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="terminal">
+      <div class="terminal-header">
+        <div class="t-dot t-dot-r"></div>
+        <div class="t-dot t-dot-y"></div>
+        <div class="t-dot t-dot-g"></div>
+      </div>
+      <div class="terminal-title">~/ameybhavsar.com</div>
+      <div class="code-line"><span class="c-comment">// profile.ts</span></div>
+      <div class="code-line"></div>
+      <div class="code-line"><span class="c-k">export const</span> <span class="c-v">engineer</span> = &#123;</div>
+      <div class="code-line">&nbsp;&nbsp;<span class="c-k">name</span>: <span class="c-s">"Amey Bhavsar"</span>,</div>
+      <div class="code-line">&nbsp;&nbsp;<span class="c-k">role</span>: <span class="c-s">"SDE II — Product Engineer"</span>,</div>
+      <div class="code-line">&nbsp;&nbsp;<span class="c-k">focus</span>: [</div>
+      <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-s">"ai-ml-systems"</span>,</div>
+      <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-s">"video-intelligence"</span>,</div>
+      <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-s">"full-stack"</span></div>
+      <div class="code-line">&nbsp;&nbsp;],</div>
+      <div class="code-line">&nbsp;&nbsp;<span class="c-k">years</span>: <span class="c-n">3</span>,</div>
+      <div class="code-line">&nbsp;&nbsp;<span class="c-k">open_to</span>: <span class="c-s">"Germany"</span></div>
+      <div class="code-line">&#125;<span class="c-cursor"></span></div>
+    </div>
+    <div class="stats-row">
+      <div class="stat-cell">
+        <div class="stat-value">3+</div>
+        <div class="stat-label">Years</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-value">500+</div>
+        <div class="stat-label">Hrs processed</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-value">95%</div>
+        <div class="stat-label">Post quality</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MARQUEE -->
+<MarqueeBand />
+
+<!-- PROJECTS -->
+<div class="projects-section" id="projects">
+  <div class="projects-header">
+    <div>
+      <div class="section-eyebrow">Selected work</div>
+      <h2 class="projects-title">Things I've<br>shipped.</h2>
+    </div>
+    <a href="/work/tessact-video-repurposing" class="view-all">
+      View all
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10l8-8M2 2h8v8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+  <div class="projects-layout">
+    <!-- Featured -->
+    <div class="project-featured">
+      <div>
+        <div class="project-featured-num">01 / 03 — Tessact · 2026</div>
+      </div>
+      <div>
+        <h3 class="project-featured-title">TessactAI —<br>Video Repurposing</h3>
+        <p class="project-featured-desc">
+          Built solo in 2 months. Takes 2-hour podcasts and produces
+          30–40 branded social clips. Replaces 4 weeks of manual editing
+          with 1 hour at 95% ready-to-post quality. Processed 500+ hours
+          for enterprise POCs including Garena Free Fire.
+        </p>
+        <div class="project-tags">
+          <span class="tag">FastAPI</span>
+          <span class="tag">PydanticAI</span>
+          <span class="tag">Celery</span>
+          <span class="tag">Remotion</span>
+          <span class="tag">AWS Lambda</span>
+          <span class="tag">GCP</span>
+        </div>
+        <a href="/work/tessact-video-repurposing" class="project-cta">
+          Read case study
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M1.5 9.5l8-8M1.5 1.5H9.5v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+    <!-- Cards column -->
+    <div style="display:grid; grid-template-rows: 1fr 1fr; gap: 1px; background: var(--z-200);">
+      <div class="project-card">
+        <div>
+          <div class="project-card-num">02 / 03 — Tessact · 2022–25</div>
+          <div class="project-card-title">Face Detection &amp; Tracking Service</div>
+          <p class="project-card-desc">Replaced AWS Rekognition. Cut cost from $6 to $0.15 per hour — saves $2,500/month. Runs in production for JioHotstar and SunTV.</p>
+        </div>
+        <div class="project-card-tags">
+          <span class="tag-sm">InsightFace</span>
+          <span class="tag-sm">Python</span>
+          <span class="tag-sm">Docker</span>
+        </div>
+      </div>
+      <a href="/work/saathi" class="project-card" style="text-decoration:none; color:inherit;">
+        <div>
+          <div class="project-card-num">03 / 03 — Thesis · IEEE 2023</div>
+          <div class="project-card-title">Saathi — AI Mental Health Companion</div>
+          <p class="project-card-desc">CNN + LSTM system trained on 100k+ Reddit posts. 95.51% accuracy on bipolar detection. 4th at IIT Bombay RESCON. Published IEEE.</p>
+        </div>
+        <div class="project-card-tags">
+          <span class="tag-sm">TensorFlow</span>
+          <span class="tag-sm">LSTM</span>
+          <span class="tag-sm">RASA</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- STACK -->
+<div class="stack-section">
+  <div class="stack-header">
+    <div>
+      <div class="stack-eyebrow">What I use</div>
+      <h2 class="stack-title">Technical<br>stack.</h2>
+    </div>
+  </div>
+  <div class="stack-grid">
+    <div class="stack-item">
+      <div class="stack-category">AI / ML</div>
+      <div class="stack-name">PyTorch · LLMs</div>
+      <div class="stack-sub">GPT-4/5, Gemini 2.5, PydanticAI for orchestration. InsightFace, Whisper, CLIP for multimodal.</div>
+      <div class="stack-tools">
+        <span class="stack-tool">PydanticAI</span>
+        <span class="stack-tool">LangChain</span>
+        <span class="stack-tool">InsightFace</span>
+        <span class="stack-tool">Whisper</span>
+        <span class="stack-tool">CLIP</span>
+      </div>
+    </div>
+    <div class="stack-item">
+      <div class="stack-category">Backend</div>
+      <div class="stack-name">Python · FastAPI</div>
+      <div class="stack-sub">Django for product backends. Celery + RabbitMQ for async pipelines. PostgreSQL and Redis.</div>
+      <div class="stack-tools">
+        <span class="stack-tool">FastAPI</span>
+        <span class="stack-tool">Django</span>
+        <span class="stack-tool">Celery</span>
+        <span class="stack-tool">RabbitMQ</span>
+        <span class="stack-tool">PostgreSQL</span>
+      </div>
+    </div>
+    <div class="stack-item">
+      <div class="stack-category">Frontend</div>
+      <div class="stack-name">React · Next.js</div>
+      <div class="stack-sub">TypeScript-first. Remotion for video rendering. Tailwind CSS for rapid UI.</div>
+      <div class="stack-tools">
+        <span class="stack-tool">TypeScript</span>
+        <span class="stack-tool">Next.js 14</span>
+        <span class="stack-tool">Remotion</span>
+        <span class="stack-tool">Tailwind</span>
+      </div>
+    </div>
+    <div class="stack-item">
+      <div class="stack-category">Cloud & DevOps</div>
+      <div class="stack-name">GCP · AWS</div>
+      <div class="stack-sub">Cloud Run for auto-scaling containers. Lambda for parallel rendering. GitHub Actions CI/CD.</div>
+      <div class="stack-tools">
+        <span class="stack-tool">Docker</span>
+        <span class="stack-tool">GCP Cloud Run</span>
+        <span class="stack-tool">AWS Lambda</span>
+        <span class="stack-tool">Kubernetes</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div class="about-section" id="about">
+  <div>
+    <div class="section-eyebrow">About</div>
+    <h2 class="about-title">Engineering<br>with intent.</h2>
+    <div class="about-body">
+      <p>I'm a product engineer, three years in. Most of what I've shipped is AI/ML — the kind that ends up in production and handles real load, not just demos.</p>
+      <p>At Tessact, I've built the full stack: AI pipelines with LLM orchestration, video processing infrastructure, face tracking systems, and the React frontends customers use daily. Clients like JioHotstar and SunTV depend on systems I own in production.</p>
+      <p>I'm now looking for Product Engineer or Full-Stack roles in Germany — somewhere I can keep building hard things, at a company where AI is actually part of the product.</p>
+    </div>
+    <div class="about-cards" style="margin-top: 2.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+      <div style="padding: 1.5rem; border: 1px solid var(--z-200);">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--z-400); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:0.5rem;">Education</div>
+        <div style="font-family:'Space Grotesk',sans-serif; font-size:0.9375rem; font-weight:600; color:var(--z-900); letter-spacing:-0.01em; margin-bottom:0.25rem;">BE Computer Engineering</div>
+        <div style="font-size:0.875rem; color:var(--z-500);">University of Mumbai · 2019–23</div>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:0.8125rem; color:var(--z-400); margin-top:0.5rem;">CGPA 9.15 / 10 · 1.4 German GPA</div>
+      </div>
+      <div style="padding: 1.5rem; border: 1px solid var(--z-200);">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--z-400); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:0.5rem;">Languages</div>
+        <div style="font-size:0.9375rem; color:var(--z-700); line-height:1.7;">English <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--z-400);">IELTS Band 8 · C1</span><br>Hindi, Marathi <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--z-400);">native</span><br>German <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--z-400);">A1 — learning</span></div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <ul class="exp-list">
+      <li class="exp-item">
+        <div class="exp-year">Jan 2026 —<br>Present</div>
+        <div>
+          <div class="exp-company">Tessact</div>
+          <div class="exp-role">Software Development Engineer II</div>
+        </div>
+      </li>
+      <li class="exp-item">
+        <div class="exp-year">Jul 2022 —<br>Dec 2025</div>
+        <div>
+          <div class="exp-company">Tessact</div>
+          <div class="exp-role">Software Development Engineer</div>
+        </div>
+      </li>
+    </ul>
+    <div style="margin-top: 2.5rem;">
+      <div style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--z-400); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:1.5rem;">Achievements</div>
+      <div style="display: flex; flex-direction: column; gap: 0;">
+        <div style="padding: 1rem 0; border-bottom: 1px solid var(--z-100); display:flex; justify-content:space-between; align-items:baseline;">
+          <span style="font-size:0.9375rem; color:var(--z-700);">Codechef rating</span>
+          <span style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600; color:var(--z-950); letter-spacing:-0.02em;">1821 <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; font-weight:400; color:var(--z-400);">Rank 104 globally</span></span>
+        </div>
+        <div style="padding: 1rem 0; border-bottom: 1px solid var(--z-100); display:flex; justify-content:space-between; align-items:baseline;">
+          <span style="font-size:0.9375rem; color:var(--z-700);">Codeforces rating</span>
+          <span style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600; color:var(--z-950); letter-spacing:-0.02em;">1444 <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; font-weight:400; color:var(--z-400);">Rank 1315 globally</span></span>
+        </div>
+        <div style="padding: 1rem 0; border-bottom: 1px solid var(--z-100); display:flex; justify-content:space-between; align-items:baseline;">
+          <span style="font-size:0.9375rem; color:var(--z-700);">GRE Verbal</span>
+          <span style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600; color:var(--z-950); letter-spacing:-0.02em;">169 <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; font-weight:400; color:var(--z-400);">/ 170</span></span>
+        </div>
+        <div style="padding: 1rem 0; display:flex; justify-content:space-between; align-items:baseline;">
+          <span style="font-size:0.9375rem; color:var(--z-700);">IIT Bombay RESCON</span>
+          <span style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600; color:var(--z-950); letter-spacing:-0.02em;">4th <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; font-weight:400; color:var(--z-400);">national</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WRITING -->
+<div class="writing-section">
+  <div class="section-eyebrow">Writing</div>
+  <div class="writing-header" style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem;">
+    <h2 style="font-family:'Space Grotesk',sans-serif; font-size:2.75rem; font-weight:700; letter-spacing:-0.04em; color:#09090b; line-height:1.1;">From the<br>notebook.</h2>
+    <a href="/blog" style="font-family:'JetBrains Mono',monospace; font-size:0.8125rem; color:#a1a1aa; text-decoration:none; letter-spacing:0.06em; display:flex; align-items:center; gap:0.5rem;">
+      All posts
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10l8-8M2 2h8v8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+  <div class="writing-list">
+    {posts.map(post => {
+      const tagList = post.data.tags?.split(',').map((t: string) => t.trim()) ?? [];
+      return (
+        <a href={`/blog/${post.slug}`} class="writing-item">
+          <div>
+            <div class="writing-date">{formatDate(post.data.publishedAt)}</div>
+            <div class="writing-title">{post.data.title}</div>
+            {post.data.summary && <div class="writing-excerpt">{post.data.summary}</div>}
+          </div>
+          {tagList.length > 0 && <span class="writing-tag">{tagList[0]}</span>}
+        </a>
+      );
+    })}
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="contact-section">
+  <div>
+    <div class="section-eyebrow">Get in touch</div>
+    <h2 class="contact-heading">
+      Building<br>
+      something<br>
+      <span class="dim">interesting?</span>
+    </h2>
+    <p class="contact-sub">
+      Looking for Product Engineer or Full-Stack roles in Germany. Most
+      interested in video, multimodal pipelines, and developer tooling —
+      things that are genuinely hard to build well.
+    </p>
+  </div>
+  <div class="contact-right">
+    <a href="mailto:ameybhavsar10@gmail.com" class="contact-link-row">
+      <span class="contact-link-label">Email</span>
+      <span class="contact-link-value">ameybhavsar10@gmail.com</span>
+    </a>
+    <a href="https://github.com/ameybh" target="_blank" rel="noopener" class="contact-link-row">
+      <span class="contact-link-label">GitHub</span>
+      <span class="contact-link-value">github.com/ameybh</span>
+    </a>
+    <a href="https://linkedin.com/in/amey-bhavsar" target="_blank" rel="noopener" class="contact-link-row">
+      <span class="contact-link-label">LinkedIn</span>
+      <span class="contact-link-value">linkedin.com/in/amey-bhavsar</span>
+    </a>
+    <a href="https://ameybhavsar.com" target="_blank" rel="noopener" class="contact-link-row">
+      <span class="contact-link-label">Website</span>
+      <span class="contact-link-value">ameybhavsar.com</span>
+    </a>
+    <div style="margin-top: 2.5rem;">
+      <a href="mailto:ameybhavsar10@gmail.com" class="btn-primary">
+        Write to me
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2.5 10.5l8-8M2.5 2.5H10.5v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+</BaseLayout>

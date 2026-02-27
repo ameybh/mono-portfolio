@@ -1,0 +1,18 @@
+---
+const { active } = Astro.props;
+---
+<nav>
+  <a href="/" class="nav-logo">AB</a>
+  <div class="nav-center">
+    <a href="/#projects" class:list={['nav-link', { active: active === 'work' }]}>Work</a>
+    <a href="/#about" class:list={['nav-link', { active: active === 'about' }]}>About</a>
+    <a href="/blog" class:list={['nav-link', { active: active === 'writing' }]}>Writing</a>
+  </div>
+  <div class="nav-right">
+    <div class="nav-status">
+      <div class="status-dot"></div>
+      Open to Germany roles
+    </div>
+    <a href="mailto:ameybhavsar10@gmail.com" class="nav-cta">Get in touch</a>
+  </div>
+</nav>

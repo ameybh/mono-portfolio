@@ -1,0 +1,52 @@
+---
+title: TessactAI — Video Repurposing
+year: "2026"
+tagline: Turns 2-hour podcasts into 30–40 branded social clips in 1 hour. Built solo in 2 months.
+company: Tessact
+tags: [FastAPI, PydanticAI, Celery, Remotion, AWS Lambda, GCP, Whisper, Gemini]
+metrics:
+  - value: "500+"
+    label: Hours processed
+  - value: "95%"
+    label: Ready-to-post quality
+  - value: "4wk→1hr"
+    label: Time reduction
+---
+
+## Problem
+
+Manual video editing for social clips takes about 4 weeks per campaign. Enterprise clients — Garena Free Fire included — were paying editors to sit through hours of recording, pick out the good moments, and clip them into short-form content.
+
+We needed a machine to do that work.
+
+## Approach
+
+Built the full pipeline solo over 2 months:
+
+1. **Transcription** — OpenAI Whisper transcribes the full audio with timestamps.
+2. **Scene analysis** — PydanticAI + Gemini 2.5 analyzes transcript segments, identifies high-energy moments, speaker changes, and topic completeness.
+3. **Clip scoring & ranking** — A scoring model ranks candidate clips by virality signals: hook strength, emotional tone, quotability, and engagement patterns.
+4. **Branded rendering** — Remotion renders each clip with client-specific branding, captions, and aspect ratio variants (9:16, 1:1, 16:9).
+5. **Parallel export** — AWS Lambda fans out rendering jobs in parallel so 40 clips render in minutes rather than hours.
+
+The system exposes a FastAPI backend with Celery + RabbitMQ for async job management, deployed on GCP Cloud Run.
+
+## Tech Stack
+
+- **AI/ML**: Whisper (transcription), Gemini 2.5 + PydanticAI (scene analysis), custom clip scoring
+- **Backend**: FastAPI, Celery, RabbitMQ, PostgreSQL
+- **Rendering**: Remotion + AWS Lambda (parallel)
+- **Infrastructure**: GCP Cloud Run, Docker
+
+## Results
+
+- Processed **500+ hours** of enterprise video for POCs
+- Achieved **95% ready-to-post quality** — minimal human review needed
+- Reduced production time from **4 weeks → 1 hour** per campaign
+- Deployed for Garena Free Fire and multiple enterprise clients
+
+## What I learned
+
+Building this alone meant every trade-off was mine to make. The thing that surprised me most: the LLM scene analysis is only as good as the prompts. Generic prompts produce generic clips — learned that the hard way. Once I started feeding in actual client context — who the audience is, what platform this is for, what the brand cares about — the output quality jumped.
+
+Remotion's Lambda rendering is powerful but requires careful cost management. Parameterizing concurrency per job type saved ~60% on rendering costs.

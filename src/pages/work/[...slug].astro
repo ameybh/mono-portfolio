@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('work');
+  return projects.map(project => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await project.render();
+const { title, year, tagline, company, tags, metrics } = project.data;
+---
+<BaseLayout title={`${title} — Amey Bhavsar`} description={tagline} active="work">
+  <div class="case-hero">
+    <a href="/#projects" class="prose-back">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <path d="M11 7H3M3 7l4-4M3 7l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Back to projects
+    </a>
+    <div class="case-num">{company} · {year}</div>
+    <h1 class="case-title">{title}</h1>
+    <p class="case-tagline">{tagline}</p>
+
+    <!-- Metrics row -->
+    <div class="stats-row" style="max-width: 480px;">
+      {metrics.map((m: { value: string; label: string }) => (
+        <div class="stat-cell">
+          <div class="stat-value">{m.value}</div>
+          <div class="stat-label">{m.label}</div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Tags -->
+    <div class="project-tags" style="margin-top: 2rem; margin-bottom: 0;">
+      {tags.map((tag: string) => (
+        <span class="tag-sm">{tag}</span>
+      ))}
+    </div>
+  </div>
+
+  <div class="case-content">
+    <div class="prose-body">
+      <Content />
+    </div>
+  </div>
+</BaseLayout>

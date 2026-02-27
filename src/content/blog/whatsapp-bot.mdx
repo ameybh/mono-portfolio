@@ -1,0 +1,169 @@
+---
+title: I made a WhatsApp bot to solve Math problems
+publishedAt: "2021-07-12"
+summary: WhatsApp Web bot that queries WolframAlpha for math answers. Built with Node.js — because WhatsApp doesn't share its official API with everyone.
+tags: bot,node,api,wolframalpha
+cover_image: https://dev-to-uploads.s3.amazonaws.com/uploads/articles/k7kh51pwu9fvrk35eibc.png
+---
+
+![WhatsApp bot preview](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/aytpl9th2h7uae77fhho.png)
+
+I am fascinated by chatbots. They can carry out any task automatically for you and can be invoked at a single command. I found bots on Discord and was intrigued to make one for WhatsApp. But, WhatsApp doesn't share its official API with everyone. Fortunately, many workarounds exist using WhatsApp Web. I used [`whatsapp-web.js`](https://github.com/pedroslopez/whatsapp-web.js) to ease authentication and messaging controls. It provides a simple WhatsApp Web client built using Node & Puppeteer.
+
+Using this bot, you can add more functionality and automate anything you'd like. Maybe you want to monitor your servers or get random memes. I found WolframAlpha's computational intelligence fascinating and hence decided to integrate its API with WhatsApp messaging.
+
+## Setup
+
+### Start a new NPM project in your favourite project directory
+
+```
+npm init
+```
+
+### Install Whatsapp Web packages
+
+We need `whatsapp-web.js` for WhatsApp client and `qrcode-terminal` to parse the auth information into visible QR code.
+
+```
+npm i whatsapp-web.js qrcode-terminal
+```
+
+### Boilerplate code to get started
+
+Create a new file `index.js` and add the following code.
+
+```javascript
+const qrcode = require("qrcode-terminal");
+const { Client } = require("whatsapp-web.js");
+
+const puppeteerOptions = {
+  headless: true,
+  args: ["--no-sandbox"],
+};
+
+const client = new Client({
+  puppeteer: puppeteerOptions,
+});
+
+client.on("qr", (qr) => {
+  qrcode.generate(qr, { small: true });
+});
+
+client.on("ready", () => {
+  console.log("Client is ready!");
+});
+
+client.on("message_create", (message) => {
+  const messageBody = message.body;
+  console.log(messageBody);
+  if (messageBody == "!ping") {
+    message.reply("pong");
+  }
+});
+
+client.initialize();
+```
+
+This will initialize a client instance. We pass `puppeteerOptions` to `client` to disable a GUI. Notice the `message_create` event. The client listens for any new messages. Right now, we will listen to only `!ping` and respond with `pong`.
+
+Add the following start script to `package.json`:
+
+```json
+"scripts": {
+  "start": "node index.js"
+}
+```
+
+Start the node app with `npm start`. You should see a QR code displayed in the terminal. Scan this QR code with the WhatsApp Web option in the WhatsApp menu. Once scanned successfully, you should see **Client is ready!** in the console.
+
+**Note**: WhatsApp only allows web use from a single session. If already web sessions are active (for e.g.: on a browser), they will automatically become inactive.
+
+## Responding to Math problems
+
+To solve Math problems, we are going to use the [Wolfram|Alpha API](https://products.wolframalpha.com/api/). Sign up for a free account and create a new app on the [Developer Portal](https://developer.wolframalpha.com/portal/myapps/) by clicking on **Get an App ID** button.
+
+Create a new file called `.env` and paste the `APPID`:
+
+```shell
+APPID=<App ID from Wolfram|Alpha here>
+```
+
+Install dotenv:
+
+```shell
+npm i dotenv
+```
+
+Then initialize dotenv by adding this line at the top of `index.js`:
+
+```javascript
+require("dotenv").config();
+```
+
+Download [WolframAlphaAPI.js](https://products.wolframalpha.com/api/libraries/javascript/WolframAlphaAPI.js.html) to your project directory. Initialize the instance:
+
+```javascript
+const appid = process.env.APPID;
+const WolframAlphaAPI = require('./WolframAlphaAPI.js');
+let wraAPI = WolframAlphaAPI(appid);
+const invokeKey = '!b';
+```
+
+Update the message handler:
+
+```javascript
+client.on("message_create", (message) => {
+  const messageBody = message.body;
+  if (messageBody.startsWith(invokeKey)) {
+    messageHandler(message);
+  }
+});
+
+const messageHandler = (message) => {
+  let query = message.body.substring(invokeKey.length + 1);
+  console.log(`Querying result for ${query}`);
+  handleImage(message, query, wraAPI);
+};
+```
+
+Add image handling:
+
+```javascript
+const parseDataUrl = require("parse-data-url");
+const { MessageMedia } = require("whatsapp-web.js");
+
+const handleImage = (message, text, wraAPI) => {
+  try {
+    wraAPI
+      .getSimple({ i: text, timeout: 5 })
+      .then((res) => {
+        const parsed = parseDataUrl(res);
+        message.reply(new MessageMedia(parsed.contentType, parsed.data));
+      })
+      .catch((err) => {
+        message.reply(String(err));
+      });
+  } catch (err) {
+    console.log(err);
+  }
+};
+```
+
+## And ... we're done!
+
+Start the node app again with `npm start`. Once you have authenticated, type `!b integrate x^2` in any chat and the bot should reply with the correct image output.
+
+The complete code is available on [GitHub](https://github.com/ameybhavsar24/ww-wra).
+
+### What's next
+
+Now you have a way to programmatically reply to WhatsApp messages. What you can create with it is limitless:
+
+- Lots of [prebuilt WolframAlpha APIs](https://products.wolframalpha.com/api/) — text & audio responses, steps for a problem, conversational API
+- Google search responses
+- Random joke or roast
+- Server monitoring alerts
+
+Right now, you need to scan the QR code for every run but the session can be stored in a JSON file to resume it again. Read more on [Resuming Sessions](https://waguide.pedroslopez.me/features/resuming-sessions).
+
+Thank you for reading this tutorial to the very end!

@@ -1,0 +1,47 @@
+---
+title: Face Detection & Tracking Service
+year: "2022–25"
+tagline: Replaced AWS Rekognition with a custom face indexing service. 97.5% cost reduction. Live at JioHotstar and SunTV.
+company: Tessact
+tags: [InsightFace, ArcFace, Python, Docker, PostgreSQL, GCP]
+metrics:
+  - value: "$0.15/hr"
+    label: vs $6/hr before
+  - value: "97.5%"
+    label: Cost reduction
+  - value: "$2,500"
+    label: Saved per month
+---
+
+## Problem
+
+Tessact's face detection pipeline ran on AWS Rekognition at **$6 per hour** of processed video. For a media intelligence platform processing hundreds of hours of broadcast content for clients like JioHotstar and SunTV, the bill was unsustainable.
+
+The goal: replace Rekognition with a custom service that matched or exceeded accuracy at a fraction of the cost.
+
+## Approach
+
+1. **Model selection** — Evaluated several open-source face recognition models. Selected InsightFace's ArcFace model for its accuracy on broadcast video (partial occlusion, varied lighting, non-frontal faces).
+2. **Custom vector indexing** — Built a face index using vector similarity search. ArcFace embeddings are stored per-identity; incoming frames are matched against the index using cosine similarity with a configurable threshold.
+3. **Dockerised service** — Packaged as a Docker container with a FastAPI interface matching Rekognition's API surface — a drop-in swap for the existing pipeline.
+4. **In-place deployment** — Deployed to GCP Cloud Run. Swapped in without changes to upstream or downstream services.
+
+## Tech Stack
+
+- **ML**: InsightFace (ArcFace model), custom vector index
+- **Backend**: Python, FastAPI, NumPy
+- **Infrastructure**: Docker, GCP Cloud Run
+- **Storage**: PostgreSQL (face index metadata)
+
+## Results
+
+- **$6/hr → $0.15/hr** — 97.5% cost reduction
+- Saves **$2,500/month** in AWS spend
+- Runs in production for **JioHotstar** and **SunTV**
+- Accuracy on par with or better than Rekognition for broadcast video
+
+## What I learned
+
+Rekognition charges per hour of video processed. A self-hosted model costs what the instance costs, regardless of throughput. We hit break-even in the first week of real traffic.
+
+The vector index held up well as the face database grew — ArcFace embeddings are stable. The tricky part was threshold tuning. Broadcast video is harder than photos: partial occlusion, motion blur, non-frontal faces. Getting the false positive / miss tradeoff right took a few calibration passes on actual content from the clients.

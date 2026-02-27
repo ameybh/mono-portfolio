@@ -1,0 +1,62 @@
+---
+title: Saathi — AI Mental Health Companion
+year: "2023"
+tagline: CNN + LSTM system for mental health support. 95.51% bipolar detection accuracy. Published IEEE, 4th at IIT Bombay RESCON.
+company: University of Mumbai (Thesis)
+tags: [TensorFlow, CNN, LSTM, RASA, NLP, Python]
+metrics:
+  - value: "95.51%"
+    label: Bipolar detection accuracy
+  - value: "100k+"
+    label: Reddit posts trained on
+  - value: "4th"
+    label: IIT Bombay RESCON
+---
+
+## Problem
+
+The thesis started from a frustration I couldn't shake: getting actual mental health support is slow, expensive, and hard to access. For my final year, I wanted to see how close you could get to something useful using NLP — specifically around detecting bipolar disorder signals from text.
+
+The question was whether a conversational system could identify those signals accurately enough to be worth building.
+
+## Approach
+
+### Sentiment & mood detection
+
+Trained a **CNN + LSTM hybrid** on over 100,000 Reddit posts from mental health communities (r/bipolar, r/depression, r/mentalhealth). The CNN layer extracts local textual features (word patterns, n-gram signals); the LSTM layer captures long-range sequential dependencies in how mood states evolve across a conversation.
+
+Multi-class classification across: euthymia, hypomanic, manic, depressive, and mixed states.
+
+### Conversational interface
+
+**RASA** handles dialogue management — intent classification, entity extraction, and conversation state. The sentiment model runs as a custom RASA component, feeding mood state predictions into the dialogue policy.
+
+Response strategies vary based on detected state: de-escalation for manic states, validation and gentle activation for depressive states, psychoeducation during euthymia.
+
+### Dataset
+
+- **r/bipolar**, **r/depression**, **r/mentalhealth** posts (2018–2022)
+- Labels derived from post flair and manual annotation for a validation subset
+- Preprocessing: tokenization, lemmatization, stopword removal, slang normalization
+
+## Tech Stack
+
+- **ML**: TensorFlow (CNN + LSTM), custom preprocessing pipeline
+- **NLP**: RASA (dialogue management), NLTK, spaCy
+- **Backend**: Python, Flask API
+- **Deployment**: Local + university server
+
+## Results
+
+- **95.51% accuracy** on bipolar disorder detection (held-out test set)
+- **4th place at IIT Bombay RESCON** — national-level research competition
+- **Published IEEE 2023** — peer-reviewed conference paper
+- System demonstrated live to faculty evaluation panel
+
+## What I learned
+
+This was my first real NLP project at any scale. The biggest challenge was label quality: Reddit post flair is noisy, and a model trained on noisy labels learns the noise. We added a secondary annotation pass using a small crowd-sourced validation set — carefully labelled — which helped calibration a lot.
+
+RASA's dialogue management is powerful but opinionated. Integrating a custom PyTorch/TF component required wrapping it as a RASA custom component — good architectural lesson in interface design.
+
+The accuracy numbers are promising, but I'm careful about overstating what this means clinically. A detection model is a screening signal, not a diagnosis — and the thesis was careful to frame it that way.

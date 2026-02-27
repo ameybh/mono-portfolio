@@ -1,0 +1,16 @@
+---
+const items = [
+  'Python','FastAPI','Django','React','Next.js','PyTorch',
+  'PydanticAI','LangChain','Celery','RabbitMQ','Docker',
+  'GCP','AWS Lambda','InsightFace','Remotion'
+];
+---
+<div class="marquee-band">
+  <div class="marquee-track">
+    {[...items, ...items].map((item, i) => (
+      <span class="marquee-item">
+        {item}<span class="marquee-dot"></span>
+      </span>
+    ))}
+  </div>
+</div>
