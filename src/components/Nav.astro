@@ -1,18 +1,50 @@
 ---
+import { cn } from '@/lib/utils';
+
+interface Props {
+  active?: string;
+}
+
 const { active } = Astro.props;
+
+const navLinkStyles = 'relative text-sm text-zinc-500 px-3.5 py-1.5 transition-all duration-150 hover:text-zinc-900';
+const navLinkActive = 'bg-white text-zinc-900 border border-zinc-200 -m-px';
 ---
-<nav>
-  <a href="/" class="nav-logo magnetic">AB</a>
-  <div class="nav-center">
-    <a href="/#projects" class:list={['nav-link', { active: active === 'work' }]}>Work</a>
-    <a href="/#about" class:list={['nav-link', { active: active === 'about' }]}>About</a>
-    <a href="/blog" class:list={['nav-link', { active: active === 'writing' }]}>Writing</a>
+
+<nav class="sticky top-0 z-50 flex items-center justify-between px-5 md:px-7 lg:px-12 py-5 bg-zinc-50/94 backdrop-blur-md border-b border-zinc-200">
+  <a href="/" class="font-display font-semibold text-sm tracking-tight text-zinc-950 magnetic">AB</a>
+  
+  <div class="hidden md:flex items-center gap-0.5 bg-zinc-100 border border-zinc-200 p-1">
+    <a 
+      href="/#projects" 
+      class={cn(navLinkStyles, (active === 'work' || active === 'projects') && navLinkActive)}
+    >
+      Work
+    </a>
+    <a 
+      href="/#about" 
+      class={cn(navLinkStyles, active === 'about' && navLinkActive)}
+    >
+      About
+    </a>
+    <a 
+      href="/blog" 
+      class={cn(navLinkStyles, active === 'writing' && navLinkActive)}
+    >
+      Writing
+    </a>
   </div>
-  <div class="nav-right">
-    <div class="nav-status">
-      <div class="status-dot"></div>
+  
+  <div class="flex items-center gap-5">
+    <div class="hidden lg:flex items-center gap-2 font-mono text-xs tracking-widest text-zinc-500">
+      <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
       Open to Germany roles
     </div>
-    <a href="mailto:ameybhavsar10@gmail.com" class="nav-cta magnetic">Get in touch</a>
+    <a 
+      href="mailto:ameybhavsar10@gmail.com" 
+      class="font-display font-medium text-sm bg-zinc-950 text-zinc-50 border border-zinc-950 px-4 py-2 transition-all duration-300 hover:-translate-y-px hover:shadow-lg hover:shadow-zinc-950/20 active:translate-y-0 active:scale-[0.98] magnetic"
+    >
+      Get in touch
+    </a>
   </div>
 </nav>

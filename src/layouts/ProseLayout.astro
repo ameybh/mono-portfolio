@@ -18,8 +18,8 @@ const {
 } = Astro.props;
 ---
 <BaseLayout title={`${title} — Amey Bhavsar`} description={description} active={active}>
-  <div class="prose-wrapper">
-    <a href={backHref} class="prose-back magnetic">
+  <div class="max-w-[68ch] mx-auto px-5 md:px-8 py-20 pb-32">
+    <a href={backHref} class="inline-flex items-center gap-2 font-mono text-sm text-zinc-400 tracking-widest mb-12 transition-all hover:text-zinc-700 hover:-translate-x-1 magnetic">
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
         <path d="M11 7H3M3 7l4-4M3 7l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>

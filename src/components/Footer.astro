@@ -1,12 +1,16 @@
 ---
+const currentYear = new Date().getFullYear();
 ---
-<footer>
-  <span class="footer-brand">Amey Bhavsar</span>
-  <ul class="footer-links">
-    <li><a href="https://github.com/ameybh" target="_blank" rel="noopener">GitHub</a></li>
-    <li><a href="https://linkedin.com/in/amey-bhavsar" target="_blank" rel="noopener">LinkedIn</a></li>
-    <li><a href="https://ameybhavsar.com" target="_blank" rel="noopener">Website</a></li>
-    <li><a href="#">Resume</a></li>
+
+<footer class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 px-5 md:px-7 lg:px-12 py-8 border-t border-zinc-200">
+  <span class="font-display font-semibold text-sm tracking-tight text-zinc-950">Amey Bhavsar</span>
+  
+  <ul class="flex flex-wrap gap-6 md:gap-10">
+    <li><a href="https://github.com/ameybh" target="_blank" rel="noopener" class="font-mono text-sm text-zinc-400 hover:text-zinc-900 transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-zinc-900 after:transition-all hover:after:w-full">GitHub</a></li>
+    <li><a href="https://linkedin.com/in/amey-bhavsar" target="_blank" rel="noopener" class="font-mono text-sm text-zinc-400 hover:text-zinc-900 transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-zinc-900 after:transition-all hover:after:w-full">LinkedIn</a></li>
+    <li><a href="https://ameybhavsar.com" target="_blank" rel="noopener" class="font-mono text-sm text-zinc-400 hover:text-zinc-900 transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-zinc-900 after:transition-all hover:after:w-full">Website</a></li>
+    <li><a href="#" class="font-mono text-sm text-zinc-400 hover:text-zinc-900 transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-zinc-900 after:transition-all hover:after:w-full">Resume</a></li>
   </ul>
-  <span class="footer-copy">© 2026 · Amey Bhavsar · Bengaluru</span>
+  
+  <span class="font-mono text-sm text-zinc-400">© {currentYear} · Bengaluru</span>
 </footer>

@@ -1,341 +1,385 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import MarqueeBand from '../components/MarqueeBand.astro';
+import Button from '@/components/ui/Button.astro';
+import Badge from '@/components/ui/Badge.astro';
+import Eyebrow from '@/components/ui/Eyebrow.astro';
 import { getCollection } from 'astro:content';
 
-const posts = (await getCollection('blog'))
-  .sort((a, b) => new Date(b.data.publishedAt).getTime() - new Date(a.data.publishedAt).getTime())
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf())
   .slice(0, 4);
 
-function formatDate(str: string) {
-  return new Date(str).toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
+function formatDate(date: Date) {
+  return date.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
 }
+
+const techStack = [
+  {
+    category: 'AI / ML',
+    title: 'PyTorch · LLMs',
+    desc: 'GPT-4/5, Gemini 2.5, PydanticAI for orchestration. InsightFace, Whisper, CLIP for multimodal.',
+    tools: ['PydanticAI', 'LangChain', 'InsightFace', 'Whisper', 'CLIP'],
+  },
+  {
+    category: 'Backend',
+    title: 'Python · FastAPI',
+    desc: 'Django for product backends. Celery + RabbitMQ for async pipelines. PostgreSQL and Redis.',
+    tools: ['FastAPI', 'Django', 'Celery', 'RabbitMQ', 'PostgreSQL'],
+  },
+  {
+    category: 'Frontend',
+    title: 'React · Next.js',
+    desc: 'TypeScript-first. Remotion for video rendering. Tailwind CSS for rapid UI.',
+    tools: ['TypeScript', 'Next.js 14', 'Remotion', 'Tailwind'],
+  },
+  {
+    category: 'Cloud & DevOps',
+    title: 'GCP · AWS',
+    desc: 'Cloud Run for auto-scaling containers. Lambda for parallel rendering. GitHub Actions CI/CD.',
+    tools: ['Docker', 'GCP Cloud Run', 'AWS Lambda', 'Kubernetes'],
+  },
+];
+
+const experience = [
+  { period: 'Jan 2026 —\nPresent', company: 'Tessact', role: 'Software Development Engineer II' },
+  { period: 'Jul 2022 —\nDec 2025', company: 'Tessact', role: 'Software Development Engineer' },
+];
+
+const achievements = [
+  { label: 'Codechef rating', value: '1821', note: 'Rank 104 globally' },
+  { label: 'Codeforces rating', value: '1444', note: 'Rank 1315 globally' },
+  { label: 'GRE Verbal', value: '169', note: '/ 170' },
+  { label: 'IIT Bombay RESCON', value: '4th', note: 'national' },
+];
+
+const contactLinks = [
+  { label: 'Email', value: 'ameybhavsar10@gmail.com', href: 'mailto:ameybhavsar10@gmail.com' },
+  { label: 'GitHub', value: 'github.com/ameybh', href: 'https://github.com/ameybh' },
+  { label: 'LinkedIn', value: 'linkedin.com/in/amey-bhavsar', href: 'https://linkedin.com/in/amey-bhavsar' },
+  { label: 'Website', value: 'ameybhavsar.com', href: 'https://ameybhavsar.com' },
+];
 ---
 <BaseLayout active="work">
 
 <!-- HERO -->
-<div class="hero">
-  <div class="hero-left">
-    <div class="hero-tag">Bengaluru, India · SDE II · AI/ML</div>
-    <h1 class="hero-title">
+<section class="min-h-[calc(100dvh-72px)] grid lg:grid-cols-[55%_45%] items-center border-b border-zinc-200">
+  <!-- Left -->
+  <div class="px-5 md:px-7 lg:px-12 py-12 lg:py-20 lg:border-r border-zinc-200">
+    <div class="flex items-center gap-2.5 font-mono text-xs tracking-widest uppercase text-zinc-500 mb-8">
+      <span class="w-5 h-px bg-zinc-300"></span>
+      Bengaluru, India · SDE II · AI/ML
+    </div>
+    
+    <h1 class="font-display font-bold text-5xl md:text-6xl lg:text-[clamp(4rem,5.5vw,6.5rem)] leading-[0.95] tracking-tight text-zinc-950 mb-6">
       Build AI.<br>
       Ship fast.<br>
-      <span class="dim">End to end.</span>
+      <span class="text-zinc-300">End to end.</span>
     </h1>
-    <p class="hero-desc">
+    
+    <p class="text-lg text-zinc-500 font-light leading-relaxed max-w-md mb-8">
       Product engineer with 3 years building AI/ML systems from scratch —
       video intelligence pipelines, multimodal models, and production
       microservices. Currently at Tessact. Seeking roles in Germany.
     </p>
-    <div class="hero-actions">
-      <a href="#projects" class="btn-primary magnetic">
+    
+    <div class="flex flex-col sm:flex-row gap-3.5">
+      <Button href="#projects" variant="primary" magnetic>
         View my work
-        <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2.5 10.5l8-8M2.5 2.5H10.5v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-      <a href="#about" class="btn-secondary magnetic">Read about me</a>
+        <svg class="w-3.5 h-3.5" viewBox="0 0 13 13" fill="none"><path d="M2.5 10.5l8-8M2.5 2.5H10.5v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </Button>
+      <Button href="#about" variant="secondary" magnetic>
+        Read about me
+      </Button>
     </div>
   </div>
 
-  <div class="hero-right">
-    <div class="terminal">
-      <div class="terminal-header">
-        <div class="t-dot t-dot-r"></div>
-        <div class="t-dot t-dot-y"></div>
-        <div class="t-dot t-dot-g"></div>
+  <!-- Right -->
+  <div class="px-5 md:px-7 lg:pl-14 py-12 lg:py-0 flex flex-col gap-6">
+    <!-- Terminal -->
+    <div class="bg-zinc-950 p-6 relative transition-all duration-400 hover:-translate-y-1 hover:shadow-2xl hover:shadow-zinc-950/25">
+      <div class="flex gap-1.5 mb-5">
+        <div class="w-2.5 h-2.5 rounded-full bg-zinc-700"></div>
+        <div class="w-2.5 h-2.5 rounded-full bg-zinc-700"></div>
+        <div class="w-2.5 h-2.5 rounded-full bg-zinc-700"></div>
       </div>
-      <div class="terminal-title">~/ameybhavsar.com</div>
-      <div class="code-line"><span class="c-comment">// profile.ts</span></div>
-      <div class="code-line"></div>
-      <div class="code-line"><span class="c-k">export const</span> <span class="c-v">engineer</span> = &#123;</div>
-      <div class="code-line">&nbsp;&nbsp;<span class="c-k">name</span>: <span class="c-s">"Amey Bhavsar"</span>,</div>
-      <div class="code-line">&nbsp;&nbsp;<span class="c-k">role</span>: <span class="c-s">"SDE II — Product Engineer"</span>,</div>
-      <div class="code-line">&nbsp;&nbsp;<span class="c-k">focus</span>: [</div>
-      <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-s">"ai-ml-systems"</span>,</div>
-      <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-s">"video-intelligence"</span>,</div>
-      <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-s">"full-stack"</span></div>
-      <div class="code-line">&nbsp;&nbsp;],</div>
-      <div class="code-line">&nbsp;&nbsp;<span class="c-k">years</span>: <span class="c-n">3</span>,</div>
-      <div class="code-line">&nbsp;&nbsp;<span class="c-k">open_to</span>: <span class="c-s">"Germany"</span></div>
-      <div class="code-line">&#125;<span class="c-cursor"></span></div>
+      <div class="absolute top-5 left-1/2 -translate-x-1/2 font-mono text-[11px] tracking-widest text-zinc-500">~/ameybhavsar.com</div>
+      
+      <div class="font-mono text-sm leading-7 text-zinc-400 whitespace-pre">
+        <span class="text-zinc-600">// profile.ts</span>
+
+        <span class="text-zinc-200">export const</span> <span class="text-zinc-100">engineer</span> = {'{'}
+          <span class="text-zinc-200">name</span>: <span class="text-zinc-400">"Amey Bhavsar"</span>,
+          <span class="text-zinc-200">role</span>: <span class="text-zinc-400">"SDE II — Product Engineer"</span>,
+          <span class="text-zinc-200">focus</span>: [
+            <span class="text-zinc-400">"ai-ml-systems"</span>,
+            <span class="text-zinc-400">"video-intelligence"</span>,
+            <span class="text-zinc-400">"full-stack"</span>
+          ],
+          <span class="text-zinc-200">years</span>: <span class="italic">3</span>,
+          <span class="text-zinc-200">open_to</span>: <span class="text-zinc-400">"Germany"</span>
+        {'}'}<span class="inline-block w-0.5 h-4 bg-zinc-400 ml-0.5 align-middle animate-[cursor-blink_1.1s_step-end_infinite]"></span>
+      </div>
     </div>
-    <div class="stats-row">
-      <div class="stat-cell">
-        <div class="stat-value">3+</div>
-        <div class="stat-label">Years</div>
-      </div>
-      <div class="stat-cell">
-        <div class="stat-value">500+</div>
-        <div class="stat-label">Hrs processed</div>
-      </div>
-      <div class="stat-cell">
-        <div class="stat-value">95%</div>
-        <div class="stat-label">Post quality</div>
-      </div>
+    
+    <!-- Stats -->
+    <div class="grid grid-cols-3 gap-px bg-zinc-200 border border-zinc-200">
+      {[
+        { value: '3+', label: 'Years' },
+        { value: '500+', label: 'Hrs processed' },
+        { value: '95%', label: 'Post quality' },
+      ].map(stat => (
+        <div class="bg-zinc-50 p-5 transition-colors hover:bg-zinc-100">
+          <div class="font-display font-bold text-3xl md:text-4xl tracking-tight text-zinc-950 mb-1">{stat.value}</div>
+          <div class="font-mono text-xs tracking-widest uppercase text-zinc-500">{stat.label}</div>
+        </div>
+      ))}
     </div>
   </div>
-</div>
+</section>
 
 <!-- MARQUEE -->
 <MarqueeBand />
 
 <!-- PROJECTS -->
-<div class="projects-section" id="projects">
-  <div class="projects-header">
+<section class="px-5 md:px-7 lg:px-12 py-20 lg:py-28 border-b border-zinc-200" id="projects">
+  <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 lg:mb-16">
     <div>
-      <div class="section-eyebrow">Selected work</div>
-      <h2 class="projects-title">Things I've<br>shipped.</h2>
+      <Eyebrow class="mb-4">Selected work</Eyebrow>
+      <h2 class="font-display font-bold text-4xl md:text-5xl tracking-tight text-zinc-950 leading-tight">
+        Things I've<br>shipped.
+      </h2>
     </div>
-    <a href="/work/tessact-video-repurposing" class="view-all">
+    <a href="/work/tessact-video-repurposing" class="font-mono text-sm text-zinc-400 tracking-widest flex items-center gap-2 hover:text-zinc-700 transition-colors group">
       View all
-      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10l8-8M2 2h8v8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg class="w-3 h-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" viewBox="0 0 12 12" fill="none"><path d="M2 10l8-8M2 2h8v8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
   </div>
-  <div class="projects-layout">
+  
+  <div class="grid lg:grid-cols-[3fr_2fr] gap-px bg-zinc-200">
     <!-- Featured -->
-    <div class="project-featured">
+    <div class="bg-zinc-950 p-8 lg:p-12 flex flex-col justify-between min-h-[520px] group">
+      <div class="font-mono text-xs tracking-widest text-zinc-500">01 / 03 — Tessact · 2026</div>
       <div>
-        <div class="project-featured-num">01 / 03 — Tessact · 2026</div>
-      </div>
-      <div>
-        <h3 class="project-featured-title">TessactAI —<br>Video Repurposing</h3>
-        <p class="project-featured-desc">
+        <h3 class="font-display font-bold text-3xl md:text-4xl tracking-tight text-zinc-100 leading-tight mb-4">
+          TessactAI —<br>Video Repurposing
+        </h3>
+        <p class="text-base text-zinc-400 font-light leading-relaxed max-w-md mb-8">
           Built solo in 2 months. Takes 2-hour podcasts and produces
           30–40 branded social clips. Replaces 4 weeks of manual editing
           with 1 hour at 95% ready-to-post quality. Processed 500+ hours
           for enterprise POCs including Garena Free Fire.
         </p>
-        <div class="project-tags">
-          <span class="tag">FastAPI</span>
-          <span class="tag">PydanticAI</span>
-          <span class="tag">Celery</span>
-          <span class="tag">Remotion</span>
-          <span class="tag">AWS Lambda</span>
-          <span class="tag">GCP</span>
+        <div class="flex flex-wrap gap-2 mb-8">
+          {['FastAPI', 'PydanticAI', 'Celery', 'Remotion', 'AWS Lambda', 'GCP'].map(tag => (
+            <Badge variant="dark" size="sm">{tag}</Badge>
+          ))}
         </div>
-        <a href="/work/tessact-video-repurposing" class="project-cta magnetic">
+        <a href="/work/tessact-video-repurposing" class="inline-flex items-center gap-2 font-display font-medium text-sm bg-zinc-100 text-zinc-950 px-5 py-2.5 transition-all hover:translate-x-1 magnetic">
           Read case study
-          <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M1.5 9.5l8-8M1.5 1.5H9.5v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg class="w-3 h-3" viewBox="0 0 11 11" fill="none"><path d="M1.5 9.5l8-8M1.5 1.5H9.5v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
       </div>
     </div>
+    
     <!-- Cards column -->
-    <div style="display:grid; grid-template-rows: 1fr 1fr; gap: 1px; background: var(--z-200);">
-      <div class="project-card">
+    <div class="grid grid-rows-2 gap-px bg-zinc-200">
+      <!-- Face Detection -->
+      <a href="/work/face-detection-tracking" class="bg-white p-8 lg:p-9 flex flex-col justify-between transition-all hover:bg-zinc-50 hover:-translate-y-0.5 hover:shadow-lg group">
         <div>
-          <div class="project-card-num">02 / 03 — Tessact · 2022–25</div>
-          <div class="project-card-title">Face Detection &amp; Tracking Service</div>
-          <p class="project-card-desc">Replaced AWS Rekognition. Cut cost from $6 to $0.15 per hour — saves $2,500/month. Runs in production for JioHotstar and SunTV.</p>
+          <div class="font-mono text-xs tracking-widest text-zinc-400 mb-8">02 / 03 — Tessact · 2022–25</div>
+          <h4 class="font-display font-semibold text-xl md:text-2xl tracking-tight text-zinc-950 leading-tight mb-2">
+            Face Detection & Tracking Service
+          </h4>
+          <p class="text-base text-zinc-500 font-light leading-relaxed">
+            Replaced AWS Rekognition. Cut cost from $6 to $0.15 per hour — saves $2,500/month. Runs in production for JioHotstar and SunTV.
+          </p>
         </div>
-        <div class="project-card-tags">
-          <span class="tag-sm">InsightFace</span>
-          <span class="tag-sm">Python</span>
-          <span class="tag-sm">Docker</span>
+        <div class="flex flex-wrap gap-1.5 mt-6">
+          {['InsightFace', 'Python', 'Docker'].map(tag => (
+            <Badge size="sm">{tag}</Badge>
+          ))}
         </div>
-      </div>
-      <a href="/work/saathi" class="project-card" style="text-decoration:none; color:inherit;">
+      </a>
+      
+      <!-- Saathi -->
+      <a href="/work/saathi" class="bg-white p-8 lg:p-9 flex flex-col justify-between transition-all hover:bg-zinc-50 hover:-translate-y-0.5 hover:shadow-lg group">
         <div>
-          <div class="project-card-num">03 / 03 — Thesis · IEEE 2023</div>
-          <div class="project-card-title">Saathi — AI Mental Health Companion</div>
-          <p class="project-card-desc">CNN + LSTM system trained on 100k+ Reddit posts. 95.51% accuracy on bipolar detection. 4th at IIT Bombay RESCON. Published IEEE.</p>
+          <div class="font-mono text-xs tracking-widest text-zinc-400 mb-8">03 / 03 — Thesis · IEEE 2023</div>
+          <h4 class="font-display font-semibold text-xl md:text-2xl tracking-tight text-zinc-950 leading-tight mb-2">
+            Saathi — AI Mental Health Companion
+          </h4>
+          <p class="text-base text-zinc-500 font-light leading-relaxed">
+            CNN + LSTM system trained on 100k+ Reddit posts. 95.51% accuracy on bipolar detection. 4th at IIT Bombay RESCON. Published IEEE.
+          </p>
         </div>
-        <div class="project-card-tags">
-          <span class="tag-sm">TensorFlow</span>
-          <span class="tag-sm">LSTM</span>
-          <span class="tag-sm">RASA</span>
+        <div class="flex flex-wrap gap-1.5 mt-6">
+          {['TensorFlow', 'LSTM', 'RASA'].map(tag => (
+            <Badge size="sm">{tag}</Badge>
+          ))}
         </div>
       </a>
     </div>
   </div>
-</div>
+</section>
 
 <!-- STACK -->
-<div class="stack-section">
-  <div class="stack-header">
+<section class="px-5 md:px-7 lg:px-12 py-20 lg:py-28 bg-zinc-950 border-b border-zinc-900">
+  <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 lg:mb-16">
     <div>
-      <div class="stack-eyebrow">What I use</div>
-      <h2 class="stack-title">Technical<br>stack.</h2>
+      <div class="font-mono text-xs tracking-widest text-zinc-500 uppercase mb-2">What I use</div>
+      <h2 class="font-display font-bold text-4xl md:text-5xl tracking-tight text-white leading-tight">
+        Technical<br>stack.
+      </h2>
     </div>
   </div>
-  <div class="stack-grid">
-    <div class="stack-item">
-      <div class="stack-category">AI / ML</div>
-      <div class="stack-name">PyTorch · LLMs</div>
-      <div class="stack-sub">GPT-4/5, Gemini 2.5, PydanticAI for orchestration. InsightFace, Whisper, CLIP for multimodal.</div>
-      <div class="stack-tools">
-        <span class="stack-tool">PydanticAI</span>
-        <span class="stack-tool">LangChain</span>
-        <span class="stack-tool">InsightFace</span>
-        <span class="stack-tool">Whisper</span>
-        <span class="stack-tool">CLIP</span>
+  
+  <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-zinc-900">
+    {techStack.map(item => (
+      <div class="bg-zinc-950 p-8 transition-colors hover:bg-zinc-900/50 group">
+        <div class="font-mono text-xs tracking-widest text-zinc-500 uppercase mb-5">{item.category}</div>
+        <h3 class="font-display font-semibold text-lg text-zinc-100 tracking-tight mb-1.5 group-hover:text-white transition-colors">{item.title}</h3>
+        <p class="text-base text-zinc-400 leading-relaxed mb-5">{item.desc}</p>
+        <div class="flex flex-wrap gap-1.5">
+          {item.tools.map(tool => (
+            <Badge variant="dark" size="sm">{tool}</Badge>
+          ))}
+        </div>
       </div>
-    </div>
-    <div class="stack-item">
-      <div class="stack-category">Backend</div>
-      <div class="stack-name">Python · FastAPI</div>
-      <div class="stack-sub">Django for product backends. Celery + RabbitMQ for async pipelines. PostgreSQL and Redis.</div>
-      <div class="stack-tools">
-        <span class="stack-tool">FastAPI</span>
-        <span class="stack-tool">Django</span>
-        <span class="stack-tool">Celery</span>
-        <span class="stack-tool">RabbitMQ</span>
-        <span class="stack-tool">PostgreSQL</span>
-      </div>
-    </div>
-    <div class="stack-item">
-      <div class="stack-category">Frontend</div>
-      <div class="stack-name">React · Next.js</div>
-      <div class="stack-sub">TypeScript-first. Remotion for video rendering. Tailwind CSS for rapid UI.</div>
-      <div class="stack-tools">
-        <span class="stack-tool">TypeScript</span>
-        <span class="stack-tool">Next.js 14</span>
-        <span class="stack-tool">Remotion</span>
-        <span class="stack-tool">Tailwind</span>
-      </div>
-    </div>
-    <div class="stack-item">
-      <div class="stack-category">Cloud & DevOps</div>
-      <div class="stack-name">GCP · AWS</div>
-      <div class="stack-sub">Cloud Run for auto-scaling containers. Lambda for parallel rendering. GitHub Actions CI/CD.</div>
-      <div class="stack-tools">
-        <span class="stack-tool">Docker</span>
-        <span class="stack-tool">GCP Cloud Run</span>
-        <span class="stack-tool">AWS Lambda</span>
-        <span class="stack-tool">Kubernetes</span>
-      </div>
-    </div>
+    ))}
   </div>
-</div>
+</section>
 
 <!-- ABOUT -->
-<div class="about-section" id="about">
-  <div>
-    <div class="section-eyebrow">About</div>
-    <h2 class="about-title">Engineering<br>with intent.</h2>
-    <div class="about-body">
-      <p>I'm a product engineer, three years in. Most of what I've shipped is AI/ML — the kind that ends up in production and handles real load, not just demos.</p>
-      <p>At Tessact, I've built the full stack: AI pipelines with LLM orchestration, video processing infrastructure, face tracking systems, and the React frontends customers use daily. Clients like JioHotstar and SunTV depend on systems I own in production.</p>
-      <p>I'm now looking for Product Engineer or Full-Stack roles in Germany — somewhere I can keep building hard things, at a company where AI is actually part of the product.</p>
-    </div>
-    <div class="about-cards" style="margin-top: 2.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
-      <div style="padding: 1.5rem; border: 1px solid var(--z-200);">
-        <div style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--z-400); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:0.5rem;">Education</div>
-        <div style="font-family:'Space Grotesk',sans-serif; font-size:0.9375rem; font-weight:600; color:var(--z-900); letter-spacing:-0.01em; margin-bottom:0.25rem;">BE Computer Engineering</div>
-        <div style="font-size:0.875rem; color:var(--z-500);">University of Mumbai · 2019–23</div>
-        <div style="font-family:'JetBrains Mono',monospace; font-size:0.8125rem; color:var(--z-400); margin-top:0.5rem;">CGPA 9.15 / 10 · 1.4 German GPA</div>
+<section class="px-5 md:px-7 lg:px-12 py-20 lg:py-28 border-b border-zinc-200" id="about">
+  <div class="grid lg:grid-cols-[5fr_4fr] gap-12 lg:gap-32 items-start">
+    <!-- Left -->
+    <div>
+      <Eyebrow class="mb-4">About</Eyebrow>
+      <h2 class="font-display font-bold text-4xl md:text-5xl tracking-tight text-zinc-950 leading-tight mb-8">
+        Engineering<br>with intent.
+      </h2>
+      <div class="text-lg text-zinc-500 font-light leading-relaxed space-y-5">
+        <p>I'm a product engineer, three years in. Most of what I've shipped is AI/ML — the kind that ends up in production and handles real load, not just demos.</p>
+        <p>At Tessact, I've built the full stack: AI pipelines with LLM orchestration, video processing infrastructure, face tracking systems, and the React frontends customers use daily. Clients like JioHotstar and SunTV depend on systems I own in production.</p>
+        <p>I'm now looking for Product Engineer or Full-Stack roles in Germany — somewhere I can keep building hard things, at a company where AI is actually part of the product.</p>
       </div>
-      <div style="padding: 1.5rem; border: 1px solid var(--z-200);">
-        <div style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--z-400); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:0.5rem;">Languages</div>
-        <div style="font-size:0.9375rem; color:var(--z-700); line-height:1.7;">English <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--z-400);">IELTS Band 8 · C1</span><br>Hindi, Marathi <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--z-400);">native</span><br>German <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--z-400);">A1 — learning</span></div>
+      
+      <!-- Cards -->
+      <div class="grid sm:grid-cols-2 gap-6 mt-10">
+        <div class="p-6 border border-zinc-200">
+          <div class="font-mono text-xs tracking-widest text-zinc-400 uppercase mb-2">Education</div>
+          <div class="font-display font-semibold text-base text-zinc-950 tracking-tight mb-1">BE Computer Engineering</div>
+          <div class="text-sm text-zinc-500">University of Mumbai · 2019–23</div>
+          <div class="font-mono text-sm text-zinc-400 mt-2">CGPA 9.15 / 10 · 1.4 German GPA</div>
+        </div>
+        <div class="p-6 border border-zinc-200">
+          <div class="font-mono text-xs tracking-widest text-zinc-400 uppercase mb-2">Languages</div>
+          <div class="text-base text-zinc-700 leading-relaxed">
+            English <span class="font-mono text-xs text-zinc-400">IELTS Band 8 · C1</span><br>
+            Hindi, Marathi <span class="font-mono text-xs text-zinc-400">native</span><br>
+            German <span class="font-mono text-xs text-zinc-400">A1 — learning</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Right -->
+    <div>
+      <!-- Experience -->
+      <ul class="space-y-0">
+        {experience.map(job => (
+          <li class="grid grid-cols-[7rem_1fr] gap-6 py-6 border-b border-zinc-100 transition-all hover:bg-gradient-to-r hover:from-zinc-50 hover:to-transparent hover:pl-2 hover:-ml-2">
+            <div class="font-mono text-sm text-zinc-400 tracking-tight leading-snug whitespace-pre">{job.period}</div>
+            <div>
+              <div class="font-display font-semibold text-base text-zinc-900 tracking-tight mb-0.5">{job.company}</div>
+              <div class="text-base text-zinc-500 font-light">{job.role}</div>
+            </div>
+          </li>
+        ))}
+      </ul>
+      
+      <!-- Achievements -->
+      <div class="mt-10">
+        <div class="font-mono text-xs tracking-widest text-zinc-400 uppercase mb-6">Achievements</div>
+        <div class="flex flex-col">
+          {achievements.map((item, i) => (
+            <div class={`py-4 border-b ${i === achievements.length - 1 ? 'border-b-0' : 'border-zinc-100'} flex justify-between items-baseline transition-all hover:bg-gradient-to-r hover:from-zinc-50 hover:to-transparent hover:pl-2 hover:-ml-2`}>
+              <span class="text-base text-zinc-700">{item.label}</span>
+              <span class="font-display font-semibold text-base text-zinc-950 tracking-tight">
+                {item.value} <span class="font-mono text-xs font-normal text-zinc-400">{item.note}</span>
+              </span>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   </div>
-  <div>
-    <ul class="exp-list">
-      <li class="exp-item">
-        <div class="exp-year">Jan 2026 —<br>Present</div>
-        <div>
-          <div class="exp-company">Tessact</div>
-          <div class="exp-role">Software Development Engineer II</div>
-        </div>
-      </li>
-      <li class="exp-item">
-        <div class="exp-year">Jul 2022 —<br>Dec 2025</div>
-        <div>
-          <div class="exp-company">Tessact</div>
-          <div class="exp-role">Software Development Engineer</div>
-        </div>
-      </li>
-    </ul>
-    <div style="margin-top: 2.5rem;">
-      <div style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--z-400); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:1.5rem;">Achievements</div>
-      <div style="display: flex; flex-direction: column; gap: 0;">
-        <div style="padding: 1rem 0; border-bottom: 1px solid var(--z-100); display:flex; justify-content:space-between; align-items:baseline;">
-          <span style="font-size:0.9375rem; color:var(--z-700);">Codechef rating</span>
-          <span style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600; color:var(--z-950); letter-spacing:-0.02em;">1821 <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; font-weight:400; color:var(--z-400);">Rank 104 globally</span></span>
-        </div>
-        <div style="padding: 1rem 0; border-bottom: 1px solid var(--z-100); display:flex; justify-content:space-between; align-items:baseline;">
-          <span style="font-size:0.9375rem; color:var(--z-700);">Codeforces rating</span>
-          <span style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600; color:var(--z-950); letter-spacing:-0.02em;">1444 <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; font-weight:400; color:var(--z-400);">Rank 1315 globally</span></span>
-        </div>
-        <div style="padding: 1rem 0; border-bottom: 1px solid var(--z-100); display:flex; justify-content:space-between; align-items:baseline;">
-          <span style="font-size:0.9375rem; color:var(--z-700);">GRE Verbal</span>
-          <span style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600; color:var(--z-950); letter-spacing:-0.02em;">169 <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; font-weight:400; color:var(--z-400);">/ 170</span></span>
-        </div>
-        <div style="padding: 1rem 0; display:flex; justify-content:space-between; align-items:baseline;">
-          <span style="font-size:0.9375rem; color:var(--z-700);">IIT Bombay RESCON</span>
-          <span style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600; color:var(--z-950); letter-spacing:-0.02em;">4th <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; font-weight:400; color:var(--z-400);">national</span></span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+</section>
 
 <!-- WRITING -->
-<div class="writing-section">
-  <div class="section-eyebrow">Writing</div>
-  <div class="writing-header" style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem;">
-    <h2 style="font-family:'Space Grotesk',sans-serif; font-size:2.75rem; font-weight:700; letter-spacing:-0.04em; color:#09090b; line-height:1.1;">From the<br>notebook.</h2>
-    <a href="/blog" style="font-family:'JetBrains Mono',monospace; font-size:0.8125rem; color:#a1a1aa; text-decoration:none; letter-spacing:0.06em; display:flex; align-items:center; gap:0.5rem;">
+<section class="px-5 md:px-7 lg:px-12 py-20 lg:py-28 border-b border-zinc-200">
+  <Eyebrow class="mb-4">Writing</Eyebrow>
+  <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 lg:mb-12">
+    <h2 class="font-display font-bold text-4xl md:text-5xl tracking-tight text-zinc-950 leading-tight">
+      From the<br>notebook.
+    </h2>
+    <a href="/blog" class="font-mono text-sm text-zinc-400 tracking-widest flex items-center gap-2 hover:text-zinc-700 transition-colors group">
       All posts
-      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10l8-8M2 2h8v8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg class="w-3 h-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" viewBox="0 0 12 12" fill="none"><path d="M2 10l8-8M2 2h8v8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
   </div>
-  <div class="writing-list">
+  
+  <div class="flex flex-col">
     {posts.map((post, index) => {
       const tagList = post.data.tags?.split(',').map((t: string) => t.trim()) ?? [];
       return (
-        <a href={`/blog/${post.slug}`} class="writing-item stagger-reveal" style={`--stagger-index: ${index}`}>
+        <a href={`/blog/${post.slug}`} class="group grid md:grid-cols-[1fr_auto] gap-8 py-8 border-b border-zinc-100 items-center transition-all hover:bg-gradient-to-r hover:from-zinc-50 hover:to-transparent hover:pl-3 hover:-ml-3" style={`--stagger-index: ${index}`}>
           <div>
-            <div class="writing-date">{formatDate(post.data.publishedAt)}</div>
-            <div class="writing-title">{post.data.title}</div>
-            {post.data.summary && <div class="writing-excerpt">{post.data.summary}</div>}
+            <div class="font-mono text-sm text-zinc-400 tracking-widest mb-2">{formatDate(post.data.publishedAt)}</div>
+            <h3 class="font-display font-semibold text-xl text-zinc-950 tracking-tight mb-1 group-hover:text-zinc-800 transition-colors">{post.data.title}</h3>
+            {post.data.summary && <p class="text-base text-zinc-500 font-light max-w-prose">{post.data.summary}</p>}
           </div>
-          {tagList.length > 0 && <span class="writing-tag">{tagList[0]}</span>}
+          {tagList.length > 0 && <Badge class="shrink-0">{tagList[0]}</Badge>}
         </a>
       );
     })}
   </div>
-</div>
+</section>
 
 <!-- CONTACT -->
-<div class="contact-section">
-  <div>
-    <div class="section-eyebrow">Get in touch</div>
-    <h2 class="contact-heading">
-      Building<br>
-      something<br>
-      <span class="dim">interesting?</span>
-    </h2>
-    <p class="contact-sub">
-      Looking for Product Engineer or Full-Stack roles in Germany. Most
-      interested in video, multimodal pipelines, and developer tooling —
-      things that are genuinely hard to build well.
-    </p>
-  </div>
-  <div class="contact-right">
-    <a href="mailto:ameybhavsar10@gmail.com" class="contact-link-row">
-      <span class="contact-link-label">Email</span>
-      <span class="contact-link-value">ameybhavsar10@gmail.com</span>
-    </a>
-    <a href="https://github.com/ameybh" target="_blank" rel="noopener" class="contact-link-row">
-      <span class="contact-link-label">GitHub</span>
-      <span class="contact-link-value">github.com/ameybh</span>
-    </a>
-    <a href="https://linkedin.com/in/amey-bhavsar" target="_blank" rel="noopener" class="contact-link-row">
-      <span class="contact-link-label">LinkedIn</span>
-      <span class="contact-link-value">linkedin.com/in/amey-bhavsar</span>
-    </a>
-    <a href="https://ameybhavsar.com" target="_blank" rel="noopener" class="contact-link-row">
-      <span class="contact-link-label">Website</span>
-      <span class="contact-link-value">ameybhavsar.com</span>
-    </a>
-    <div style="margin-top: 2.5rem;">
-      <a href="mailto:ameybhavsar10@gmail.com" class="btn-primary">
-        Write to me
-        <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2.5 10.5l8-8M2.5 2.5H10.5v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
+<section class="px-5 md:px-7 lg:px-12 py-24 lg:py-36 border-b border-zinc-200">
+  <div class="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+    <div>
+      <Eyebrow class="mb-4">Get in touch</Eyebrow>
+      <h2 class="font-display font-bold text-4xl md:text-5xl lg:text-6xl tracking-tight text-zinc-950 leading-[1.05] mb-6">
+        Building<br>
+        something<br>
+        <span class="text-zinc-300">interesting?</span>
+      </h2>
+      <p class="text-base text-zinc-500 font-light leading-relaxed max-w-md">
+        Looking for Product Engineer or Full-Stack roles in Germany. Most
+        interested in video, multimodal pipelines, and developer tooling —
+        things that are genuinely hard to build well.
+      </p>
+    </div>
+    
+    <div class="flex flex-col">
+      {contactLinks.map(link => (
+        <a href={link.href} target={link.href.startsWith('http') ? '_blank' : undefined} rel={link.href.startsWith('http') ? 'noopener' : undefined} class="group flex justify-between items-center py-6 border-b border-zinc-100 transition-all hover:pl-2 hover:-ml-2 hover:bg-gradient-to-r hover:from-zinc-50 hover:to-transparent relative">
+          <span class="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-0 bg-zinc-900 transition-all group-hover:h-[60%]"></span>
+          <span class="font-display font-medium text-base text-zinc-950 tracking-tight">{link.label}</span>
+          <span class="font-mono text-sm text-zinc-400 tracking-wide group-hover:text-zinc-700 transition-colors">{link.value}</span>
+        </a>
+      ))}
+      <div class="mt-10">
+        <Button href="mailto:ameybhavsar10@gmail.com" variant="primary" magnetic>
+          Write to me
+          <svg class="w-3.5 h-3.5" viewBox="0 0 13 13" fill="none"><path d="M2.5 10.5l8-8M2.5 2.5H10.5v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </Button>
+      </div>
     </div>
   </div>
-</div>
+</section>
 
 </BaseLayout>

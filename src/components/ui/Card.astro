@@ -1,0 +1,31 @@
+---
+import { cn } from '@/lib/utils';
+
+interface Props {
+  variant?: 'default' | 'dark' | 'ghost';
+  href?: string;
+  class?: string;
+}
+
+const { 
+  variant = 'default',
+  href,
+  class: className,
+} = Astro.props;
+
+const baseStyles = 'group transition-all duration-300';
+
+const variants = {
+  default: 'bg-white border border-zinc-200 hover:border-zinc-300 hover:shadow-lg hover:shadow-zinc-950/5',
+  dark: 'bg-zinc-950 border border-zinc-900 hover:border-zinc-800',
+  ghost: 'bg-transparent hover:bg-zinc-50',
+};
+
+const classes = cn(baseStyles, variants[variant], className);
+
+const Tag = href ? 'a' : 'div';
+---
+
+<Tag href={href} class={classes}>
+  <slot />
+</Tag>
