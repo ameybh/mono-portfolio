@@ -1,9 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap');
 
+
+
 @import "tailwindcss";
 
 /* Dark mode variant - class-based */
 @custom-variant dark (&:where(.dark, .dark *));
+
 
 /* Design Tokens */
 @theme {
@@ -141,10 +144,12 @@
 
   html {
     scroll-behavior: auto;
+    overflow-x: hidden;
   }
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
+    overflow-x: hidden;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -426,6 +431,183 @@
 
 .dark .theme-toggle .moon-icon {
   @apply rotate-0 scale-100;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 1023px) {
+  .prose-wrapper {
+    @apply px-5 py-16 pb-24;
+  }
+
+  .prose-title {
+    @apply text-2xl;
+  }
+
+  .blog-page {
+    @apply px-5 py-16 pb-24;
+  }
+
+  .blog-page-header h1 {
+    @apply text-3xl;
+  }
+
+  .case-hero {
+    @apply px-5 py-16 pb-12;
+  }
+
+  .case-title {
+    @apply text-3xl;
+  }
+
+  .case-content {
+    @apply px-5 py-12 pb-24;
+  }
+}
+
+@media (max-width: 639px) {
+  /* Navigation - hide desktop nav on mobile */
+  nav .nav-desktop {
+    @apply hidden;
+  }
+
+  /* Hero */
+  .hero-title {
+    @apply text-[clamp(2.75rem,11vw,4.25rem)];
+  }
+
+  /* Terminal code */
+  .code-line {
+    @apply text-sm leading-7;
+  }
+
+  /* Stats */
+  .stat-value {
+    @apply text-2xl;
+  }
+
+  .stat-label {
+    @apply text-xs;
+  }
+
+  /* Projects */
+  .projects-title {
+    @apply text-4xl;
+  }
+
+  .projects-header {
+    @apply flex-col items-start gap-5;
+  }
+
+  .project-featured {
+    @apply p-6 min-h-0;
+  }
+
+  .project-featured-title {
+    @apply text-2xl;
+  }
+
+  .project-card {
+    @apply p-6;
+  }
+
+  /* Stack */
+  .stack-section {
+    @apply py-16;
+  }
+
+  .stack-title {
+    @apply text-4xl;
+  }
+
+  .stack-header {
+    @apply flex-col items-start;
+  }
+
+  /* About */
+  .about-section {
+    @apply py-16 gap-12;
+  }
+
+  .about-title {
+    @apply text-4xl;
+  }
+
+  .about-cards {
+    @apply grid-cols-1;
+  }
+
+  /* Writing */
+  .writing-section {
+    @apply py-16;
+  }
+
+  .writing-header {
+    @apply flex-col items-start gap-5 mb-8;
+  }
+
+  .writing-header h2 {
+    @apply text-4xl;
+  }
+
+  .writing-item {
+    @apply grid-cols-1 gap-3.5;
+  }
+
+  .writing-tag {
+    @apply self-start;
+  }
+
+  /* Contact */
+  .contact-section {
+    @apply py-16;
+  }
+
+  .contact-heading {
+    @apply text-[clamp(2.25rem,9vw,3.5rem)];
+  }
+
+  .contact-link-row {
+    @apply flex-col items-start gap-1 py-5;
+  }
+
+  /* Footer */
+  footer {
+    @apply flex-col items-start gap-6 py-8;
+  }
+
+  footer ul {
+    @apply flex-wrap gap-6;
+  }
+
+  /* General */
+  .section-eyebrow {
+    @apply mb-8;
+  }
+
+  /* Prose pages */
+  .prose-wrapper {
+    @apply px-5 py-12 pb-20;
+  }
+
+  .prose-title {
+    @apply text-2xl;
+  }
+
+  .blog-page {
+    @apply px-5 py-12 pb-20;
+  }
+
+  .case-hero {
+    @apply px-5 py-12 pb-10;
+  }
+
+  .case-title {
+    @apply text-3xl;
+  }
+
+  .case-content {
+    @apply px-5 py-12 pb-20;
+  }
 }
 
 /* Reduced motion support */

@@ -14,7 +14,7 @@ const navLinkActive = 'bg-card text-foreground border border-border -m-px';
 <nav class="sticky top-0 z-50 flex items-center justify-between px-5 md:px-7 lg:px-12 py-5 bg-background/94 backdrop-blur-md border-b border-border">
   <a href="/" class="font-display font-semibold text-sm tracking-tight text-foreground magnetic">AB</a>
   
-  <div class="hidden md:flex items-center gap-0.5 bg-muted border border-border p-1">
+  <div class="nav-desktop hidden md:flex items-center gap-0.5 bg-muted border border-border p-1">
     <a 
       href="/#projects" 
       class={cn(navLinkStyles, (active === 'work' || active === 'projects') && navLinkActive)}

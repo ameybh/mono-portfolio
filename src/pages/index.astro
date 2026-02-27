@@ -71,7 +71,7 @@ const contactLinks = [
       Bengaluru, India · SDE II · AI/ML
     </div>
     
-    <h1 class="font-display font-bold text-5xl md:text-6xl lg:text-[clamp(4rem,5.5vw,6.5rem)] leading-[0.95] tracking-tight text-foreground mb-6">
+    <h1 class="hero-title font-display font-bold text-5xl md:text-6xl lg:text-[clamp(4rem,5.5vw,6.5rem)] leading-[0.95] tracking-tight text-foreground mb-6">
       Build AI.<br>
       Ship fast.<br>
       <span class="text-muted-foreground">End to end.</span>
@@ -105,7 +105,7 @@ const contactLinks = [
       </div>
       <div class="absolute top-5 left-1/2 -translate-x-1/2 font-mono text-[11px] tracking-widest text-muted-foreground">~/ameybhavsar.com</div>
       
-      <div class="font-mono text-sm leading-7 text-zinc-400 whitespace-pre">
+      <div class="font-mono text-sm leading-7 text-zinc-400 whitespace-pre-wrap break-words">
         <span class="text-zinc-600">// profile.ts</span>
 
         <span class="text-zinc-200">export const</span> <span class="text-zinc-100">engineer</span> = {'{'}
@@ -142,11 +142,11 @@ const contactLinks = [
 <MarqueeBand />
 
 <!-- PROJECTS -->
-<section class="px-5 md:px-7 lg:px-12 py-20 lg:py-28 border-b border-border" id="projects">
-  <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 lg:mb-16">
+<section class="projects-section px-5 md:px-7 lg:px-12 py-20 lg:py-28 border-b border-border" id="projects">
+  <div class="projects-header flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 lg:mb-16">
     <div>
       <Eyebrow class="mb-4">Selected work</Eyebrow>
-      <h2 class="font-display font-bold text-4xl md:text-5xl tracking-tight text-foreground leading-tight">
+      <h2 class="projects-title font-display font-bold text-4xl md:text-5xl tracking-tight text-foreground leading-tight">
         Things I've<br>shipped.
       </h2>
     </div>
@@ -158,10 +158,10 @@ const contactLinks = [
   
   <div class="grid lg:grid-cols-[3fr_2fr] gap-px bg-border">
     <!-- Featured -->
-    <div class="bg-elevated border border-elevated-border p-8 lg:p-12 flex flex-col justify-between min-h-[520px] group">
+    <div class="project-featured bg-elevated border border-elevated-border p-8 lg:p-12 flex flex-col justify-between min-h-[520px] group">
       <div class="font-mono text-xs tracking-widest text-elevated-muted">01 / 03 — Tessact · 2026</div>
       <div>
-        <h3 class="font-display font-bold text-3xl md:text-4xl tracking-tight text-elevated-foreground leading-tight mb-4">
+        <h3 class="project-featured-title font-display font-bold text-3xl md:text-4xl tracking-tight text-elevated-foreground leading-tight mb-4">
           TessactAI —<br>Video Repurposing
         </h3>
         <p class="text-base text-elevated-muted font-light leading-relaxed max-w-md mb-8">
@@ -185,7 +185,7 @@ const contactLinks = [
     <!-- Cards column -->
     <div class="grid grid-rows-2 gap-px bg-border">
       <!-- Face Detection -->
-      <a href="/work/face-detection-tracking" class="bg-card p-8 lg:p-9 flex flex-col justify-between transition-all hover:bg-muted hover:-translate-y-0.5 hover:shadow-lg group">
+      <a href="/work/face-detection-tracking" class="project-card bg-card p-8 lg:p-9 flex flex-col justify-between transition-all hover:bg-muted hover:-translate-y-0.5 hover:shadow-lg group">
         <div>
           <div class="font-mono text-xs tracking-widest text-muted-foreground mb-8">02 / 03 — Tessact · 2022–25</div>
           <h4 class="font-display font-semibold text-xl md:text-2xl tracking-tight text-foreground leading-tight mb-2">
@@ -203,7 +203,7 @@ const contactLinks = [
       </a>
       
       <!-- Saathi -->
-      <a href="/work/saathi" class="bg-card p-8 lg:p-9 flex flex-col justify-between transition-all hover:bg-muted hover:-translate-y-0.5 hover:shadow-lg group">
+      <a href="/work/saathi" class="project-card bg-card p-8 lg:p-9 flex flex-col justify-between transition-all hover:bg-muted hover:-translate-y-0.5 hover:shadow-lg group">
         <div>
           <div class="font-mono text-xs tracking-widest text-muted-foreground mb-8">03 / 03 — Thesis · IEEE 2023</div>
           <h4 class="font-display font-semibold text-xl md:text-2xl tracking-tight text-foreground leading-tight mb-2">
@@ -224,19 +224,19 @@ const contactLinks = [
 </section>
 
 <!-- STACK -->
-<section class="px-5 md:px-7 lg:px-12 py-20 lg:py-28 bg-elevated border-y border-elevated-border">
-  <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 lg:mb-16">
+<section class="stack-section px-5 md:px-7 lg:px-12 py-20 lg:py-28 bg-elevated border-y border-elevated-border">
+  <div class="stack-header flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 lg:mb-16">
     <div>
       <div class="font-mono text-xs tracking-widest text-elevated-muted uppercase mb-2">What I use</div>
-      <h2 class="font-display font-bold text-4xl md:text-5xl tracking-tight text-elevated-foreground leading-tight">
+      <h2 class="stack-title font-display font-bold text-4xl md:text-5xl tracking-tight text-elevated-foreground leading-tight">
         Technical<br>stack.
       </h2>
     </div>
   </div>
   
-  <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border">
+  <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-elevated-border">
     {techStack.map(item => (
-      <div class="bg-card border border-elevated-border p-8 transition-colors hover:bg-accent group">
+      <div class="bg-elevated border border-elevated-border p-8 transition-colors hover:bg-accent group">
         <div class="font-mono text-xs tracking-widest text-elevated-muted uppercase mb-5">{item.category}</div>
         <h3 class="font-display font-semibold text-lg text-elevated-foreground tracking-tight mb-1.5 transition-colors">{item.title}</h3>
         <p class="text-base text-elevated-muted leading-relaxed mb-5">{item.desc}</p>
@@ -251,12 +251,12 @@ const contactLinks = [
 </section>
 
 <!-- ABOUT -->
-<section class="px-5 md:px-7 lg:px-12 py-20 lg:py-28 border-b border-border" id="about">
+<section class="about-section px-5 md:px-7 lg:px-12 py-20 lg:py-28 border-b border-border" id="about">
   <div class="grid lg:grid-cols-[5fr_4fr] gap-12 lg:gap-32 items-start">
     <!-- Left -->
     <div>
       <Eyebrow class="mb-4">About</Eyebrow>
-      <h2 class="font-display font-bold text-4xl md:text-5xl tracking-tight text-foreground leading-tight mb-8">
+      <h2 class="about-title font-display font-bold text-4xl md:text-5xl tracking-tight text-foreground leading-tight mb-8">
         Engineering<br>with intent.
       </h2>
       <div class="text-lg text-muted-foreground font-light leading-relaxed space-y-5">
@@ -266,7 +266,7 @@ const contactLinks = [
       </div>
       
       <!-- Cards -->
-      <div class="grid sm:grid-cols-2 gap-6 mt-10">
+      <div class="about-cards grid sm:grid-cols-2 gap-6 mt-10">
         <div class="p-6 border border-border bg-card">
           <div class="font-mono text-xs tracking-widest text-muted-foreground uppercase mb-2">Education</div>
           <div class="font-display font-semibold text-base text-foreground tracking-tight mb-1">BE Computer Engineering</div>
@@ -318,9 +318,9 @@ const contactLinks = [
 </section>
 
 <!-- WRITING -->
-<section class="px-5 md:px-7 lg:px-12 py-20 lg:py-28 border-b border-border">
+<section class="writing-section px-5 md:px-7 lg:px-12 py-20 lg:py-28 border-b border-border">
   <Eyebrow class="mb-4">Writing</Eyebrow>
-  <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 lg:mb-12">
+  <div class="writing-header flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 lg:mb-12">
     <h2 class="font-display font-bold text-4xl md:text-5xl tracking-tight text-foreground leading-tight">
       From the<br>notebook.
     </h2>
@@ -348,11 +348,11 @@ const contactLinks = [
 </section>
 
 <!-- CONTACT -->
-<section class="px-5 md:px-7 lg:px-12 py-24 lg:py-36 border-b border-border">
+<section class="contact-section px-5 md:px-7 lg:px-12 py-24 lg:py-36 border-b border-border">
   <div class="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
     <div>
       <Eyebrow class="mb-4">Get in touch</Eyebrow>
-      <h2 class="font-display font-bold text-4xl md:text-5xl lg:text-6xl tracking-tight text-foreground leading-[1.05] mb-6">
+      <h2 class="contact-heading font-display font-bold text-4xl md:text-5xl lg:text-6xl tracking-tight text-foreground leading-[1.05] mb-6">
         Building<br>
         something<br>
         <span class="text-muted-foreground">interesting?</span>
@@ -366,7 +366,7 @@ const contactLinks = [
     
     <div class="flex flex-col">
       {contactLinks.map(link => (
-        <a href={link.href} target={link.href.startsWith('http') ? '_blank' : undefined} rel={link.href.startsWith('http') ? 'noopener' : undefined} class="group flex justify-between items-center py-6 border-b border-border transition-all hover:pl-2 hover:-ml-2 hover:bg-gradient-to-r hover:from-muted hover:to-transparent relative">
+        <a href={link.href} target={link.href.startsWith('http') ? '_blank' : undefined} rel={link.href.startsWith('http') ? 'noopener' : undefined} class="contact-link-row group flex justify-between items-center py-6 border-b border-border transition-all hover:pl-2 hover:-ml-2 hover:bg-gradient-to-r hover:from-muted hover:to-transparent relative">
           <span class="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-0 bg-foreground transition-all group-hover:h-[60%]"></span>
           <span class="font-display font-medium text-base text-foreground tracking-tight">{link.label}</span>
           <span class="font-mono text-sm text-muted-foreground tracking-wide group-hover:text-foreground transition-colors">{link.value}</span>
