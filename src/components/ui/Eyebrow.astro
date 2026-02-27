@@ -8,7 +8,7 @@ interface Props {
 const { class: className } = Astro.props;
 ---
 
-<div class={cn('font-mono text-xs tracking-[0.12em] uppercase text-zinc-400 flex items-center gap-4', className)}>
-  <span class="w-5 h-px bg-zinc-300"></span>
+<div class={cn('font-mono text-xs tracking-[0.12em] uppercase text-muted-foreground flex items-center gap-4', className)}>
+  <span class="w-5 h-px bg-border"></span>
   <slot />
 </div>

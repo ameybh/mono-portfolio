@@ -63,21 +63,21 @@ const contactLinks = [
 <BaseLayout active="work">
 
 <!-- HERO -->
-<section class="min-h-[calc(100dvh-72px)] grid lg:grid-cols-[55%_45%] items-center border-b border-zinc-200">
+<section class="min-h-[calc(100dvh-72px)] grid lg:grid-cols-[55%_45%] items-center border-b border-border">
   <!-- Left -->
-  <div class="px-5 md:px-7 lg:px-12 py-12 lg:py-20 lg:border-r border-zinc-200">
-    <div class="flex items-center gap-2.5 font-mono text-xs tracking-widest uppercase text-zinc-500 mb-8">
-      <span class="w-5 h-px bg-zinc-300"></span>
+  <div class="px-5 md:px-7 lg:px-12 py-12 lg:py-20 lg:border-r border-border">
+    <div class="flex items-center gap-2.5 font-mono text-xs tracking-widest uppercase text-muted-foreground mb-8">
+      <span class="w-5 h-px bg-border"></span>
       Bengaluru, India · SDE II · AI/ML
     </div>
     
-    <h1 class="font-display font-bold text-5xl md:text-6xl lg:text-[clamp(4rem,5.5vw,6.5rem)] leading-[0.95] tracking-tight text-zinc-950 mb-6">
+    <h1 class="font-display font-bold text-5xl md:text-6xl lg:text-[clamp(4rem,5.5vw,6.5rem)] leading-[0.95] tracking-tight text-foreground mb-6">
       Build AI.<br>
       Ship fast.<br>
-      <span class="text-zinc-300">End to end.</span>
+      <span class="text-muted-foreground">End to end.</span>
     </h1>
     
-    <p class="text-lg text-zinc-500 font-light leading-relaxed max-w-md mb-8">
+    <p class="text-lg text-muted-foreground font-light leading-relaxed max-w-md mb-8">
       Product engineer with 3 years building AI/ML systems from scratch —
       video intelligence pipelines, multimodal models, and production
       microservices. Currently at Tessact. Seeking roles in Germany.
@@ -97,13 +97,13 @@ const contactLinks = [
   <!-- Right -->
   <div class="px-5 md:px-7 lg:pl-14 py-12 lg:py-0 flex flex-col gap-6">
     <!-- Terminal -->
-    <div class="bg-zinc-950 p-6 relative transition-all duration-400 hover:-translate-y-1 hover:shadow-2xl hover:shadow-zinc-950/25">
+    <div class="bg-zinc-950 p-6 relative transition-all duration-400 hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/25">
       <div class="flex gap-1.5 mb-5">
         <div class="w-2.5 h-2.5 rounded-full bg-zinc-700"></div>
         <div class="w-2.5 h-2.5 rounded-full bg-zinc-700"></div>
         <div class="w-2.5 h-2.5 rounded-full bg-zinc-700"></div>
       </div>
-      <div class="absolute top-5 left-1/2 -translate-x-1/2 font-mono text-[11px] tracking-widest text-zinc-500">~/ameybhavsar.com</div>
+      <div class="absolute top-5 left-1/2 -translate-x-1/2 font-mono text-[11px] tracking-widest text-muted-foreground">~/ameybhavsar.com</div>
       
       <div class="font-mono text-sm leading-7 text-zinc-400 whitespace-pre">
         <span class="text-zinc-600">// profile.ts</span>
@@ -123,15 +123,15 @@ const contactLinks = [
     </div>
     
     <!-- Stats -->
-    <div class="grid grid-cols-3 gap-px bg-zinc-200 border border-zinc-200">
+    <div class="grid grid-cols-3 gap-px bg-border border border-border">
       {[
         { value: '3+', label: 'Years' },
         { value: '500+', label: 'Hrs processed' },
         { value: '95%', label: 'Post quality' },
       ].map(stat => (
-        <div class="bg-zinc-50 p-5 transition-colors hover:bg-zinc-100">
-          <div class="font-display font-bold text-3xl md:text-4xl tracking-tight text-zinc-950 mb-1">{stat.value}</div>
-          <div class="font-mono text-xs tracking-widest uppercase text-zinc-500">{stat.label}</div>
+        <div class="bg-card p-5 transition-colors hover:bg-muted">
+          <div class="font-display font-bold text-3xl md:text-4xl tracking-tight text-foreground mb-1">{stat.value}</div>
+          <div class="font-mono text-xs tracking-widest uppercase text-muted-foreground">{stat.label}</div>
         </div>
       ))}
     </div>
@@ -142,29 +142,29 @@ const contactLinks = [
 <MarqueeBand />
 
 <!-- PROJECTS -->
-<section class="px-5 md:px-7 lg:px-12 py-20 lg:py-28 border-b border-zinc-200" id="projects">
+<section class="px-5 md:px-7 lg:px-12 py-20 lg:py-28 border-b border-border" id="projects">
   <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 lg:mb-16">
     <div>
       <Eyebrow class="mb-4">Selected work</Eyebrow>
-      <h2 class="font-display font-bold text-4xl md:text-5xl tracking-tight text-zinc-950 leading-tight">
+      <h2 class="font-display font-bold text-4xl md:text-5xl tracking-tight text-foreground leading-tight">
         Things I've<br>shipped.
       </h2>
     </div>
-    <a href="/work/tessact-video-repurposing" class="font-mono text-sm text-zinc-400 tracking-widest flex items-center gap-2 hover:text-zinc-700 transition-colors group">
+    <a href="/work/tessact-video-repurposing" class="font-mono text-sm text-muted-foreground tracking-widest flex items-center gap-2 hover:text-foreground transition-colors group">
       View all
       <svg class="w-3 h-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" viewBox="0 0 12 12" fill="none"><path d="M2 10l8-8M2 2h8v8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
   </div>
   
-  <div class="grid lg:grid-cols-[3fr_2fr] gap-px bg-zinc-200">
+  <div class="grid lg:grid-cols-[3fr_2fr] gap-px bg-border">
     <!-- Featured -->
-    <div class="bg-zinc-950 p-8 lg:p-12 flex flex-col justify-between min-h-[520px] group">
-      <div class="font-mono text-xs tracking-widest text-zinc-500">01 / 03 — Tessact · 2026</div>
+    <div class="bg-elevated border border-elevated-border p-8 lg:p-12 flex flex-col justify-between min-h-[520px] group">
+      <div class="font-mono text-xs tracking-widest text-elevated-muted">01 / 03 — Tessact · 2026</div>
       <div>
-        <h3 class="font-display font-bold text-3xl md:text-4xl tracking-tight text-zinc-100 leading-tight mb-4">
+        <h3 class="font-display font-bold text-3xl md:text-4xl tracking-tight text-elevated-foreground leading-tight mb-4">
           TessactAI —<br>Video Repurposing
         </h3>
-        <p class="text-base text-zinc-400 font-light leading-relaxed max-w-md mb-8">
+        <p class="text-base text-elevated-muted font-light leading-relaxed max-w-md mb-8">
           Built solo in 2 months. Takes 2-hour podcasts and produces
           30–40 branded social clips. Replaces 4 weeks of manual editing
           with 1 hour at 95% ready-to-post quality. Processed 500+ hours
@@ -172,10 +172,10 @@ const contactLinks = [
         </p>
         <div class="flex flex-wrap gap-2 mb-8">
           {['FastAPI', 'PydanticAI', 'Celery', 'Remotion', 'AWS Lambda', 'GCP'].map(tag => (
-            <Badge variant="dark" size="sm">{tag}</Badge>
+            <span class="font-mono text-xs text-elevated-muted border border-elevated-muted/30 px-2 py-0.5 tracking-wide uppercase">{tag}</span>
           ))}
         </div>
-        <a href="/work/tessact-video-repurposing" class="inline-flex items-center gap-2 font-display font-medium text-sm bg-zinc-100 text-zinc-950 px-5 py-2.5 transition-all hover:translate-x-1 magnetic">
+        <a href="/work/tessact-video-repurposing" class="inline-flex items-center gap-2 font-display font-medium text-sm bg-background text-foreground border border-border px-5 py-2.5 transition-all hover:translate-x-1 magnetic">
           Read case study
           <svg class="w-3 h-3" viewBox="0 0 11 11" fill="none"><path d="M1.5 9.5l8-8M1.5 1.5H9.5v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
@@ -183,15 +183,15 @@ const contactLinks = [
     </div>
     
     <!-- Cards column -->
-    <div class="grid grid-rows-2 gap-px bg-zinc-200">
+    <div class="grid grid-rows-2 gap-px bg-border">
       <!-- Face Detection -->
-      <a href="/work/face-detection-tracking" class="bg-white p-8 lg:p-9 flex flex-col justify-between transition-all hover:bg-zinc-50 hover:-translate-y-0.5 hover:shadow-lg group">
+      <a href="/work/face-detection-tracking" class="bg-card p-8 lg:p-9 flex flex-col justify-between transition-all hover:bg-muted hover:-translate-y-0.5 hover:shadow-lg group">
         <div>
-          <div class="font-mono text-xs tracking-widest text-zinc-400 mb-8">02 / 03 — Tessact · 2022–25</div>
-          <h4 class="font-display font-semibold text-xl md:text-2xl tracking-tight text-zinc-950 leading-tight mb-2">
+          <div class="font-mono text-xs tracking-widest text-muted-foreground mb-8">02 / 03 — Tessact · 2022–25</div>
+          <h4 class="font-display font-semibold text-xl md:text-2xl tracking-tight text-foreground leading-tight mb-2">
             Face Detection & Tracking Service
           </h4>
-          <p class="text-base text-zinc-500 font-light leading-relaxed">
+          <p class="text-base text-muted-foreground font-light leading-relaxed">
             Replaced AWS Rekognition. Cut cost from $6 to $0.15 per hour — saves $2,500/month. Runs in production for JioHotstar and SunTV.
           </p>
         </div>
@@ -203,13 +203,13 @@ const contactLinks = [
       </a>
       
       <!-- Saathi -->
-      <a href="/work/saathi" class="bg-white p-8 lg:p-9 flex flex-col justify-between transition-all hover:bg-zinc-50 hover:-translate-y-0.5 hover:shadow-lg group">
+      <a href="/work/saathi" class="bg-card p-8 lg:p-9 flex flex-col justify-between transition-all hover:bg-muted hover:-translate-y-0.5 hover:shadow-lg group">
         <div>
-          <div class="font-mono text-xs tracking-widest text-zinc-400 mb-8">03 / 03 — Thesis · IEEE 2023</div>
-          <h4 class="font-display font-semibold text-xl md:text-2xl tracking-tight text-zinc-950 leading-tight mb-2">
+          <div class="font-mono text-xs tracking-widest text-muted-foreground mb-8">03 / 03 — Thesis · IEEE 2023</div>
+          <h4 class="font-display font-semibold text-xl md:text-2xl tracking-tight text-foreground leading-tight mb-2">
             Saathi — AI Mental Health Companion
           </h4>
-          <p class="text-base text-zinc-500 font-light leading-relaxed">
+          <p class="text-base text-muted-foreground font-light leading-relaxed">
             CNN + LSTM system trained on 100k+ Reddit posts. 95.51% accuracy on bipolar detection. 4th at IIT Bombay RESCON. Published IEEE.
           </p>
         </div>
@@ -224,25 +224,25 @@ const contactLinks = [
 </section>
 
 <!-- STACK -->
-<section class="px-5 md:px-7 lg:px-12 py-20 lg:py-28 bg-zinc-950 border-b border-zinc-900">
+<section class="px-5 md:px-7 lg:px-12 py-20 lg:py-28 bg-elevated border-y border-elevated-border">
   <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 lg:mb-16">
     <div>
-      <div class="font-mono text-xs tracking-widest text-zinc-500 uppercase mb-2">What I use</div>
-      <h2 class="font-display font-bold text-4xl md:text-5xl tracking-tight text-white leading-tight">
+      <div class="font-mono text-xs tracking-widest text-elevated-muted uppercase mb-2">What I use</div>
+      <h2 class="font-display font-bold text-4xl md:text-5xl tracking-tight text-elevated-foreground leading-tight">
         Technical<br>stack.
       </h2>
     </div>
   </div>
   
-  <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-zinc-900">
+  <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border">
     {techStack.map(item => (
-      <div class="bg-zinc-950 p-8 transition-colors hover:bg-zinc-900/50 group">
-        <div class="font-mono text-xs tracking-widest text-zinc-500 uppercase mb-5">{item.category}</div>
-        <h3 class="font-display font-semibold text-lg text-zinc-100 tracking-tight mb-1.5 group-hover:text-white transition-colors">{item.title}</h3>
-        <p class="text-base text-zinc-400 leading-relaxed mb-5">{item.desc}</p>
+      <div class="bg-card border border-elevated-border p-8 transition-colors hover:bg-accent group">
+        <div class="font-mono text-xs tracking-widest text-elevated-muted uppercase mb-5">{item.category}</div>
+        <h3 class="font-display font-semibold text-lg text-elevated-foreground tracking-tight mb-1.5 transition-colors">{item.title}</h3>
+        <p class="text-base text-elevated-muted leading-relaxed mb-5">{item.desc}</p>
         <div class="flex flex-wrap gap-1.5">
           {item.tools.map(tool => (
-            <Badge variant="dark" size="sm">{tool}</Badge>
+            <span class="font-mono text-xs text-elevated-muted border border-elevated-border px-2 py-0.5 tracking-wide">{tool}</span>
           ))}
         </div>
       </div>
@@ -251,15 +251,15 @@ const contactLinks = [
 </section>
 
 <!-- ABOUT -->
-<section class="px-5 md:px-7 lg:px-12 py-20 lg:py-28 border-b border-zinc-200" id="about">
+<section class="px-5 md:px-7 lg:px-12 py-20 lg:py-28 border-b border-border" id="about">
   <div class="grid lg:grid-cols-[5fr_4fr] gap-12 lg:gap-32 items-start">
     <!-- Left -->
     <div>
       <Eyebrow class="mb-4">About</Eyebrow>
-      <h2 class="font-display font-bold text-4xl md:text-5xl tracking-tight text-zinc-950 leading-tight mb-8">
+      <h2 class="font-display font-bold text-4xl md:text-5xl tracking-tight text-foreground leading-tight mb-8">
         Engineering<br>with intent.
       </h2>
-      <div class="text-lg text-zinc-500 font-light leading-relaxed space-y-5">
+      <div class="text-lg text-muted-foreground font-light leading-relaxed space-y-5">
         <p>I'm a product engineer, three years in. Most of what I've shipped is AI/ML — the kind that ends up in production and handles real load, not just demos.</p>
         <p>At Tessact, I've built the full stack: AI pipelines with LLM orchestration, video processing infrastructure, face tracking systems, and the React frontends customers use daily. Clients like JioHotstar and SunTV depend on systems I own in production.</p>
         <p>I'm now looking for Product Engineer or Full-Stack roles in Germany — somewhere I can keep building hard things, at a company where AI is actually part of the product.</p>
@@ -267,18 +267,18 @@ const contactLinks = [
       
       <!-- Cards -->
       <div class="grid sm:grid-cols-2 gap-6 mt-10">
-        <div class="p-6 border border-zinc-200">
-          <div class="font-mono text-xs tracking-widest text-zinc-400 uppercase mb-2">Education</div>
-          <div class="font-display font-semibold text-base text-zinc-950 tracking-tight mb-1">BE Computer Engineering</div>
-          <div class="text-sm text-zinc-500">University of Mumbai · 2019–23</div>
-          <div class="font-mono text-sm text-zinc-400 mt-2">CGPA 9.15 / 10 · 1.4 German GPA</div>
+        <div class="p-6 border border-border bg-card">
+          <div class="font-mono text-xs tracking-widest text-muted-foreground uppercase mb-2">Education</div>
+          <div class="font-display font-semibold text-base text-foreground tracking-tight mb-1">BE Computer Engineering</div>
+          <div class="text-sm text-muted-foreground">University of Mumbai · 2019–23</div>
+          <div class="font-mono text-sm text-muted-foreground mt-2">CGPA 9.15 / 10 · 1.4 German GPA</div>
         </div>
-        <div class="p-6 border border-zinc-200">
-          <div class="font-mono text-xs tracking-widest text-zinc-400 uppercase mb-2">Languages</div>
-          <div class="text-base text-zinc-700 leading-relaxed">
-            English <span class="font-mono text-xs text-zinc-400">IELTS Band 8 · C1</span><br>
-            Hindi, Marathi <span class="font-mono text-xs text-zinc-400">native</span><br>
-            German <span class="font-mono text-xs text-zinc-400">A1 — learning</span>
+        <div class="p-6 border border-border bg-card">
+          <div class="font-mono text-xs tracking-widest text-muted-foreground uppercase mb-2">Languages</div>
+          <div class="text-base text-muted-foreground leading-relaxed">
+            English <span class="font-mono text-xs text-muted-foreground">IELTS Band 8 · C1</span><br>
+            Hindi, Marathi <span class="font-mono text-xs text-muted-foreground">native</span><br>
+            German <span class="font-mono text-xs text-muted-foreground">A1 — learning</span>
           </div>
         </div>
       </div>
@@ -289,11 +289,11 @@ const contactLinks = [
       <!-- Experience -->
       <ul class="space-y-0">
         {experience.map(job => (
-          <li class="grid grid-cols-[7rem_1fr] gap-6 py-6 border-b border-zinc-100 transition-all hover:bg-gradient-to-r hover:from-zinc-50 hover:to-transparent hover:pl-2 hover:-ml-2">
-            <div class="font-mono text-sm text-zinc-400 tracking-tight leading-snug whitespace-pre">{job.period}</div>
+          <li class="grid grid-cols-[7rem_1fr] gap-6 py-6 border-b border-border transition-all hover:bg-gradient-to-r hover:from-muted hover:to-transparent hover:pl-2 hover:-ml-2">
+            <div class="font-mono text-sm text-muted-foreground tracking-tight leading-snug whitespace-pre">{job.period}</div>
             <div>
-              <div class="font-display font-semibold text-base text-zinc-900 tracking-tight mb-0.5">{job.company}</div>
-              <div class="text-base text-zinc-500 font-light">{job.role}</div>
+              <div class="font-display font-semibold text-base text-foreground tracking-tight mb-0.5">{job.company}</div>
+              <div class="text-base text-muted-foreground font-light">{job.role}</div>
             </div>
           </li>
         ))}
@@ -301,13 +301,13 @@ const contactLinks = [
       
       <!-- Achievements -->
       <div class="mt-10">
-        <div class="font-mono text-xs tracking-widest text-zinc-400 uppercase mb-6">Achievements</div>
+        <div class="font-mono text-xs tracking-widest text-muted-foreground uppercase mb-6">Achievements</div>
         <div class="flex flex-col">
           {achievements.map((item, i) => (
-            <div class={`py-4 border-b ${i === achievements.length - 1 ? 'border-b-0' : 'border-zinc-100'} flex justify-between items-baseline transition-all hover:bg-gradient-to-r hover:from-zinc-50 hover:to-transparent hover:pl-2 hover:-ml-2`}>
-              <span class="text-base text-zinc-700">{item.label}</span>
-              <span class="font-display font-semibold text-base text-zinc-950 tracking-tight">
-                {item.value} <span class="font-mono text-xs font-normal text-zinc-400">{item.note}</span>
+            <div class={`py-4 border-b ${i === achievements.length - 1 ? 'border-b-0' : 'border-border'} flex justify-between items-baseline transition-all hover:bg-gradient-to-r hover:from-muted hover:to-transparent hover:pl-2 hover:-ml-2`}>
+              <span class="text-base text-muted-foreground">{item.label}</span>
+              <span class="font-display font-semibold text-base text-foreground tracking-tight">
+                {item.value} <span class="font-mono text-xs font-normal text-muted-foreground">{item.note}</span>
               </span>
             </div>
           ))}
@@ -318,13 +318,13 @@ const contactLinks = [
 </section>
 
 <!-- WRITING -->
-<section class="px-5 md:px-7 lg:px-12 py-20 lg:py-28 border-b border-zinc-200">
+<section class="px-5 md:px-7 lg:px-12 py-20 lg:py-28 border-b border-border">
   <Eyebrow class="mb-4">Writing</Eyebrow>
   <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 lg:mb-12">
-    <h2 class="font-display font-bold text-4xl md:text-5xl tracking-tight text-zinc-950 leading-tight">
+    <h2 class="font-display font-bold text-4xl md:text-5xl tracking-tight text-foreground leading-tight">
       From the<br>notebook.
     </h2>
-    <a href="/blog" class="font-mono text-sm text-zinc-400 tracking-widest flex items-center gap-2 hover:text-zinc-700 transition-colors group">
+    <a href="/blog" class="font-mono text-sm text-muted-foreground tracking-widest flex items-center gap-2 hover:text-foreground transition-colors group">
       All posts
       <svg class="w-3 h-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" viewBox="0 0 12 12" fill="none"><path d="M2 10l8-8M2 2h8v8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
@@ -334,11 +334,11 @@ const contactLinks = [
     {posts.map((post, index) => {
       const tagList = post.data.tags?.split(',').map((t: string) => t.trim()) ?? [];
       return (
-        <a href={`/blog/${post.slug}`} class="group grid md:grid-cols-[1fr_auto] gap-8 py-8 border-b border-zinc-100 items-center transition-all hover:bg-gradient-to-r hover:from-zinc-50 hover:to-transparent hover:pl-3 hover:-ml-3" style={`--stagger-index: ${index}`}>
+        <a href={`/blog/${post.slug}`} class="group grid md:grid-cols-[1fr_auto] gap-6 md:gap-8 py-8 border-b border-border items-center transition-all hover:bg-gradient-to-r hover:from-muted hover:to-transparent hover:pl-3 hover:-ml-3" style={`--stagger-index: ${index}`}>
           <div>
-            <div class="font-mono text-sm text-zinc-400 tracking-widest mb-2">{formatDate(post.data.publishedAt)}</div>
-            <h3 class="font-display font-semibold text-xl text-zinc-950 tracking-tight mb-1 group-hover:text-zinc-800 transition-colors">{post.data.title}</h3>
-            {post.data.summary && <p class="text-base text-zinc-500 font-light max-w-prose">{post.data.summary}</p>}
+            <div class="font-mono text-sm text-muted-foreground tracking-widest mb-2">{formatDate(post.data.publishedAt)}</div>
+            <h3 class="font-display font-semibold text-xl text-foreground tracking-tight mb-1 group-hover:text-muted-foreground transition-colors">{post.data.title}</h3>
+            {post.data.summary && <p class="text-base text-muted-foreground font-light max-w-prose">{post.data.summary}</p>}
           </div>
           {tagList.length > 0 && <Badge class="shrink-0">{tagList[0]}</Badge>}
         </a>
@@ -348,16 +348,16 @@ const contactLinks = [
 </section>
 
 <!-- CONTACT -->
-<section class="px-5 md:px-7 lg:px-12 py-24 lg:py-36 border-b border-zinc-200">
+<section class="px-5 md:px-7 lg:px-12 py-24 lg:py-36 border-b border-border">
   <div class="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
     <div>
       <Eyebrow class="mb-4">Get in touch</Eyebrow>
-      <h2 class="font-display font-bold text-4xl md:text-5xl lg:text-6xl tracking-tight text-zinc-950 leading-[1.05] mb-6">
+      <h2 class="font-display font-bold text-4xl md:text-5xl lg:text-6xl tracking-tight text-foreground leading-[1.05] mb-6">
         Building<br>
         something<br>
-        <span class="text-zinc-300">interesting?</span>
+        <span class="text-muted-foreground">interesting?</span>
       </h2>
-      <p class="text-base text-zinc-500 font-light leading-relaxed max-w-md">
+      <p class="text-base text-muted-foreground font-light leading-relaxed max-w-md">
         Looking for Product Engineer or Full-Stack roles in Germany. Most
         interested in video, multimodal pipelines, and developer tooling —
         things that are genuinely hard to build well.
@@ -366,10 +366,10 @@ const contactLinks = [
     
     <div class="flex flex-col">
       {contactLinks.map(link => (
-        <a href={link.href} target={link.href.startsWith('http') ? '_blank' : undefined} rel={link.href.startsWith('http') ? 'noopener' : undefined} class="group flex justify-between items-center py-6 border-b border-zinc-100 transition-all hover:pl-2 hover:-ml-2 hover:bg-gradient-to-r hover:from-zinc-50 hover:to-transparent relative">
-          <span class="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-0 bg-zinc-900 transition-all group-hover:h-[60%]"></span>
-          <span class="font-display font-medium text-base text-zinc-950 tracking-tight">{link.label}</span>
-          <span class="font-mono text-sm text-zinc-400 tracking-wide group-hover:text-zinc-700 transition-colors">{link.value}</span>
+        <a href={link.href} target={link.href.startsWith('http') ? '_blank' : undefined} rel={link.href.startsWith('http') ? 'noopener' : undefined} class="group flex justify-between items-center py-6 border-b border-border transition-all hover:pl-2 hover:-ml-2 hover:bg-gradient-to-r hover:from-muted hover:to-transparent relative">
+          <span class="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-0 bg-foreground transition-all group-hover:h-[60%]"></span>
+          <span class="font-display font-medium text-base text-foreground tracking-tight">{link.label}</span>
+          <span class="font-mono text-sm text-muted-foreground tracking-wide group-hover:text-foreground transition-colors">{link.value}</span>
         </a>
       ))}
       <div class="mt-10">

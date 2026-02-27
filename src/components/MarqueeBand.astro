@@ -5,11 +5,11 @@ const items = [
   'GCP','AWS Lambda','InsightFace','Remotion'
 ];
 ---
-<div class="group bg-zinc-950 py-3.5 overflow-hidden border-y border-zinc-900">
+<div class="group bg-elevated py-3.5 overflow-hidden border-y border-elevated-border">
   <div class="flex gap-12 whitespace-nowrap animate-marquee">
     {[...items, ...items].map((item) => (
-      <span class="font-mono text-xs text-zinc-500 tracking-widest uppercase flex items-center gap-12">
-        {item}<span class="w-1 h-1 rounded-full bg-zinc-600"></span>
+      <span class="font-mono text-xs text-elevated-muted tracking-widest uppercase flex items-center gap-12">
+        {item}<span class="w-1 h-1 rounded-full bg-elevated-muted/50"></span>
       </span>
     ))}
   </div>

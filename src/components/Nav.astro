@@ -7,14 +7,14 @@ interface Props {
 
 const { active } = Astro.props;
 
-const navLinkStyles = 'relative text-sm text-zinc-500 px-3.5 py-1.5 transition-all duration-150 hover:text-zinc-900';
-const navLinkActive = 'bg-white text-zinc-900 border border-zinc-200 -m-px';
+const navLinkStyles = 'relative text-sm text-muted-foreground px-3.5 py-1.5 transition-all duration-150 hover:text-foreground';
+const navLinkActive = 'bg-card text-foreground border border-border -m-px';
 ---
 
-<nav class="sticky top-0 z-50 flex items-center justify-between px-5 md:px-7 lg:px-12 py-5 bg-zinc-50/94 backdrop-blur-md border-b border-zinc-200">
-  <a href="/" class="font-display font-semibold text-sm tracking-tight text-zinc-950 magnetic">AB</a>
+<nav class="sticky top-0 z-50 flex items-center justify-between px-5 md:px-7 lg:px-12 py-5 bg-background/94 backdrop-blur-md border-b border-border">
+  <a href="/" class="font-display font-semibold text-sm tracking-tight text-foreground magnetic">AB</a>
   
-  <div class="hidden md:flex items-center gap-0.5 bg-zinc-100 border border-zinc-200 p-1">
+  <div class="hidden md:flex items-center gap-0.5 bg-muted border border-border p-1">
     <a 
       href="/#projects" 
       class={cn(navLinkStyles, (active === 'work' || active === 'projects') && navLinkActive)}
@@ -35,14 +35,40 @@ const navLinkActive = 'bg-white text-zinc-900 border border-zinc-200 -m-px';
     </a>
   </div>
   
-  <div class="flex items-center gap-5">
-    <div class="hidden lg:flex items-center gap-2 font-mono text-xs tracking-widest text-zinc-500">
+  <div class="flex items-center gap-3">
+    <div class="hidden lg:flex items-center gap-2 font-mono text-xs tracking-widest text-muted-foreground">
       <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
       Open to Germany roles
     </div>
+    
+    <!-- Theme Toggle -->
+    <button 
+      id="theme-toggle"
+      type="button"
+      class="relative flex items-center justify-center w-10 h-10 rounded-full bg-muted hover:bg-accent transition-colors"
+      aria-label="Toggle theme"
+    >
+      <!-- Sun icon -->
+      <svg class="sun-icon absolute w-5 h-5 text-foreground transition-all duration-300 rotate-0 scale-100 dark:rotate-90 dark:scale-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="5"/>
+        <line x1="12" y1="1" x2="12" y2="3"/>
+        <line x1="12" y1="21" x2="12" y2="23"/>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+        <line x1="1" y1="12" x2="3" y2="12"/>
+        <line x1="21" y1="12" x2="23" y2="12"/>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+      </svg>
+      <!-- Moon icon -->
+      <svg class="moon-icon absolute w-5 h-5 text-foreground transition-all duration-300 rotate-90 scale-0 dark:rotate-0 dark:scale-100" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+    </button>
+    
     <a 
       href="mailto:ameybhavsar10@gmail.com" 
-      class="font-display font-medium text-sm bg-zinc-950 text-zinc-50 border border-zinc-950 px-4 py-2 transition-all duration-300 hover:-translate-y-px hover:shadow-lg hover:shadow-zinc-950/20 active:translate-y-0 active:scale-[0.98] magnetic"
+      class="font-display font-medium text-sm bg-primary text-primary-foreground border border-primary px-4 py-2 transition-all duration-300 hover:-translate-y-px hover:shadow-lg hover:shadow-primary/20 active:translate-y-0 active:scale-[0.98] magnetic"
     >
       Get in touch
     </a>

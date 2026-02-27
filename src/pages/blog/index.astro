@@ -13,9 +13,9 @@ function formatDate(date: Date) {
 ---
 <BaseLayout title="Writing — Amey Bhavsar" active="writing">
   <div class="max-w-4xl mx-auto px-5 md:px-8 py-20 pb-32">
-    <div class="mb-16 pb-16 border-b border-zinc-200">
+    <div class="mb-16 pb-16 border-b border-border">
       <Eyebrow class="mb-6">Writing</Eyebrow>
-      <h1 class="font-display font-bold text-4xl md:text-5xl lg:text-6xl tracking-tight text-zinc-950 leading-tight text-balance">
+      <h1 class="font-display font-bold text-4xl md:text-5xl lg:text-6xl tracking-tight text-foreground leading-tight text-balance">
         From the<br>notebook.
       </h1>
     </div>
@@ -23,11 +23,11 @@ function formatDate(date: Date) {
       {posts.map((post, index) => {
         const tagList = post.data.tags?.split(',').map((t: string) => t.trim()) ?? [];
         return (
-          <a href={`/blog/${post.slug}`} class="group grid md:grid-cols-[1fr_auto] gap-6 md:gap-8 py-8 border-b border-zinc-100 items-center transition-all hover:bg-gradient-to-r hover:from-zinc-50 hover:to-transparent hover:pl-3 hover:-ml-3" style={`--stagger-index: ${index}`}>
+          <a href={`/blog/${post.slug}`} class="group grid md:grid-cols-[1fr_auto] gap-6 md:gap-8 py-8 border-b border-border items-center transition-all hover:bg-gradient-to-r hover:from-muted hover:to-transparent hover:pl-3 hover:-ml-3" style={`--stagger-index: ${index}`}>
             <div>
-              <div class="font-mono text-sm text-zinc-400 tracking-widest mb-2">{formatDate(post.data.publishedAt)}</div>
-              <div class="font-display font-semibold text-xl text-zinc-950 tracking-tight mb-1 group-hover:text-zinc-800 transition-colors">{post.data.title}</div>
-              {post.data.summary && <div class="text-base text-zinc-500 font-light max-w-prose">{post.data.summary}</div>}
+              <div class="font-mono text-sm text-muted-foreground tracking-widest mb-2">{formatDate(post.data.publishedAt)}</div>
+              <div class="font-display font-semibold text-xl text-foreground tracking-tight mb-1 group-hover:text-muted-foreground transition-colors">{post.data.title}</div>
+              {post.data.summary && <div class="text-base text-muted-foreground font-light max-w-prose">{post.data.summary}</div>}
             </div>
             <div class="flex flex-col items-end gap-2 shrink-0">
               {tagList.slice(0,2).map((tag: string) => (

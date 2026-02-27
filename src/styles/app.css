@@ -2,7 +2,10 @@
 
 @import "tailwindcss";
 
-/* Design Tokens - Zinc color palette matching your MONO design system */
+/* Dark mode variant - class-based */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Design Tokens */
 @theme {
   /* Zinc color scale */
   --color-zinc-50: #fafafa;
@@ -17,18 +20,19 @@
   --color-zinc-900: #18181b;
   --color-zinc-950: #09090b;
 
-  /* Semantic tokens */
+  /* Semantic tokens - Light mode defaults */
   --color-background: var(--color-zinc-50);
   --color-foreground: var(--color-zinc-900);
   --color-muted: var(--color-zinc-100);
   --color-muted-foreground: var(--color-zinc-500);
   --color-border: var(--color-zinc-200);
   --color-card: white;
-  --card-foreground: var(--color-zinc-900);
+  --color-card-foreground: var(--color-zinc-900);
   --color-primary: var(--color-zinc-950);
   --color-primary-foreground: var(--color-zinc-50);
   --color-accent: var(--color-zinc-100);
   --color-accent-foreground: var(--color-zinc-900);
+  --color-ring: var(--color-zinc-950);
 
   /* Font families */
   --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -68,6 +72,37 @@
   }
 }
 
+/* Light mode - Use dark backgrounds for contrast sections */
+:root {
+  /* Section backgrounds - dark in light mode for contrast */
+  --color-elevated: #09090b;
+  --color-elevated-foreground: #f4f4f5;
+  --color-elevated-muted: #a1a1aa;
+  --color-elevated-border: #27272a;
+}
+
+/* Dark mode overrides - Using subtle elevation, not harsh inversion */
+.dark {
+  --color-background: #0a0a0b;
+  --color-foreground: #f4f4f5;
+  --color-muted: #18181b;
+  --color-muted-foreground: #a1a1aa;
+  --color-border: #27272a;
+  --color-card: #121214;
+  --color-card-foreground: #f4f4f5;
+  --color-primary: #f4f4f5;
+  --color-primary-foreground: #0a0a0b;
+  --color-accent: #1c1c1f;
+  --color-accent-foreground: #f4f4f5;
+  --color-ring: #f4f4f5;
+  
+  /* Section backgrounds - subtle elevation instead of pure white */
+  --color-elevated: #121214;
+  --color-elevated-foreground: #f4f4f5;
+  --color-elevated-muted: #71717a;
+  --color-elevated-border: #27272a;
+}
+
 /* Custom utilities */
 @utility text-balance {
   text-wrap: balance;
@@ -81,12 +116,21 @@
   @apply px-5 md:px-7 lg:px-12;
 }
 
-@utility eyebrow {
-  @apply font-mono text-xs tracking-[0.12em] uppercase text-zinc-400 flex items-center gap-4;
+/* Elevated section utilities for dark mode comfort */
+@utility bg-elevated {
+  background-color: var(--color-elevated);
 }
 
-@utility eyebrow-line {
-  @apply content-[''] w-5 h-px bg-zinc-300;
+@utility text-elevated-foreground {
+  color: var(--color-elevated-foreground);
+}
+
+@utility text-elevated-muted {
+  color: var(--color-elevated-muted);
+}
+
+@utility border-elevated-border {
+  border-color: var(--color-elevated-border);
 }
 
 /* Base styles */
@@ -163,15 +207,15 @@
 }
 
 .prose-back {
-  @apply inline-flex items-center gap-2 font-mono text-sm text-zinc-400 tracking-widest mb-12 transition-all hover:text-zinc-700 hover:-translate-x-1;
+  @apply inline-flex items-center gap-2 font-mono text-sm text-muted-foreground tracking-widest mb-12 transition-all hover:text-foreground hover:-translate-x-1;
 }
 
 .prose-header {
-  @apply mb-12 pb-12 border-b border-zinc-200;
+  @apply mb-12 pb-12 border-b border-border;
 }
 
 .prose-title {
-  @apply font-display font-bold text-3xl md:text-4xl lg:text-5xl tracking-tight text-zinc-950 leading-tight mb-5 text-balance;
+  @apply font-display font-bold text-3xl md:text-4xl lg:text-5xl tracking-tight text-foreground leading-tight mb-5 text-balance;
 }
 
 .prose-meta {
@@ -179,7 +223,7 @@
 }
 
 .prose-date {
-  @apply font-mono text-sm text-zinc-400 tracking-widest;
+  @apply font-mono text-sm text-muted-foreground tracking-widest;
 }
 
 .prose-tags {
@@ -187,23 +231,23 @@
 }
 
 .prose-tag {
-  @apply font-mono text-xs text-zinc-500 border border-zinc-200 px-2.5 py-1 tracking-wide;
+  @apply font-mono text-xs text-muted-foreground border border-border px-2.5 py-1 tracking-wide;
 }
 
 .prose-body {
-  @apply text-lg leading-relaxed text-zinc-700;
+  @apply text-lg leading-relaxed text-muted-foreground;
 }
 
 .prose-body h2 {
-  @apply font-display font-bold text-2xl tracking-tight text-zinc-950 mt-12 mb-4 leading-tight;
+  @apply font-display font-bold text-2xl tracking-tight text-foreground mt-12 mb-4 leading-tight;
 }
 
 .prose-body h3 {
-  @apply font-display font-semibold text-lg tracking-tight text-zinc-900 mt-8 mb-3 leading-snug;
+  @apply font-display font-semibold text-lg tracking-tight text-foreground mt-8 mb-3 leading-snug;
 }
 
 .prose-body h4 {
-  @apply font-display font-semibold text-base text-zinc-900 mt-6 mb-2;
+  @apply font-display font-semibold text-base text-foreground mt-6 mb-2;
 }
 
 .prose-body p {
@@ -211,7 +255,7 @@
 }
 
 .prose-body a {
-  @apply text-zinc-950 underline underline-offset-4 decoration-zinc-300 hover:decoration-zinc-950 transition-colors;
+  @apply text-foreground underline underline-offset-4 decoration-border hover:decoration-foreground transition-colors;
 }
 
 .prose-body ul,
@@ -224,7 +268,7 @@
 }
 
 .prose-body code {
-  @apply font-mono text-sm bg-zinc-100 text-zinc-800 px-1.5 py-0.5 rounded-sm;
+  @apply font-mono text-sm bg-muted text-foreground px-1.5 py-0.5 rounded-sm;
 }
 
 .prose-body pre {
@@ -236,19 +280,19 @@
 }
 
 .prose-body blockquote {
-  @apply border-l-4 border-zinc-300 pl-6 my-8 text-zinc-500 italic;
+  @apply border-l-4 border-border pl-6 my-8 text-muted-foreground italic;
 }
 
 .prose-body img {
-  @apply max-w-full h-auto my-8 border border-zinc-200;
+  @apply max-w-full h-auto my-8 border border-border;
 }
 
 .prose-body hr {
-  @apply border-none border-t border-zinc-200 my-12;
+  @apply border-none border-t border-border my-12;
 }
 
 .prose-body strong {
-  @apply font-semibold text-zinc-800;
+  @apply font-semibold text-foreground;
 }
 
 /* Blog Page Styles */
@@ -257,24 +301,24 @@
 }
 
 .blog-page-header {
-  @apply mb-16 pb-16 border-b border-zinc-200;
+  @apply mb-16 pb-16 border-b border-border;
 }
 
 /* Case Study Styles */
 .case-hero {
-  @apply px-5 md:px-8 py-20 pb-16 border-b border-zinc-200 max-w-4xl mx-auto;
+  @apply px-5 md:px-8 py-20 pb-16 border-b border-border max-w-4xl mx-auto;
 }
 
 .case-num {
-  @apply font-mono text-xs tracking-widest text-zinc-400 uppercase mb-6;
+  @apply font-mono text-xs tracking-widest text-muted-foreground uppercase mb-6;
 }
 
 .case-title {
-  @apply font-display font-bold text-4xl md:text-5xl lg:text-6xl tracking-tight text-zinc-950 leading-tight mb-4 text-balance;
+  @apply font-display font-bold text-4xl md:text-5xl lg:text-6xl tracking-tight text-foreground leading-tight mb-4 text-balance;
 }
 
 .case-tagline {
-  @apply text-lg text-zinc-500 font-light mb-10 leading-relaxed;
+  @apply text-lg text-muted-foreground font-light mb-10 leading-relaxed;
 }
 
 .case-content {
@@ -283,44 +327,44 @@
 
 /* Stats */
 .stats-row {
-  @apply grid grid-cols-3 gap-px bg-zinc-200 border border-zinc-200;
+  @apply grid grid-cols-3 gap-px bg-border border border-border;
 }
 
 .stat-cell {
-  @apply bg-zinc-50 p-5 transition-colors hover:bg-zinc-100;
+  @apply bg-card p-5 transition-colors hover:bg-muted;
 }
 
 .stat-value {
-  @apply font-display font-bold text-3xl md:text-4xl tracking-tight text-zinc-950 mb-1;
+  @apply font-display font-bold text-3xl md:text-4xl tracking-tight text-foreground mb-1;
 }
 
 .stat-label {
-  @apply font-mono text-xs tracking-widest text-zinc-500 uppercase;
+  @apply font-mono text-xs tracking-widest text-muted-foreground uppercase;
 }
 
 /* Writing List */
 .writing-item {
-  @apply grid md:grid-cols-[1fr_auto] gap-8 py-8 border-b border-zinc-100 items-center transition-all hover:bg-gradient-to-r hover:from-zinc-50 hover:to-transparent hover:pl-3 hover:-ml-3;
+  @apply grid md:grid-cols-[1fr_auto] gap-8 py-8 border-b border-border items-center transition-all hover:bg-gradient-to-r hover:from-muted hover:to-transparent hover:pl-3 hover:-ml-3;
 }
 
 .writing-date {
-  @apply font-mono text-sm text-zinc-400 tracking-widest mb-2;
+  @apply font-mono text-sm text-muted-foreground tracking-widest mb-2;
 }
 
 .writing-title {
-  @apply font-display font-semibold text-xl text-zinc-950 tracking-tight mb-1 transition-colors;
+  @apply font-display font-semibold text-xl text-foreground tracking-tight mb-1 transition-colors;
 }
 
 .writing-item:hover .writing-title {
-  @apply text-zinc-800;
+  @apply text-muted-foreground;
 }
 
 .writing-excerpt {
-  @apply text-base text-zinc-500 font-light max-w-prose;
+  @apply text-base text-muted-foreground font-light max-w-prose;
 }
 
 .writing-tag {
-  @apply font-mono text-xs text-zinc-500 border border-zinc-200 px-3 py-1 tracking-wide whitespace-nowrap;
+  @apply font-mono text-xs text-muted-foreground border border-border px-3 py-1 tracking-wide whitespace-nowrap;
 }
 
 /* Project Tags */
@@ -329,7 +373,7 @@
 }
 
 .tag-sm {
-  @apply font-mono text-xs text-zinc-400 border border-zinc-200 px-2 py-0.5 tracking-wide;
+  @apply font-mono text-xs text-muted-foreground border border-border px-2 py-0.5 tracking-wide;
 }
 
 /* Stagger Reveal Animation */
@@ -352,11 +396,36 @@
 
 /* Section Eyebrow */
 .section-eyebrow {
-  @apply font-mono text-xs tracking-[0.12em] uppercase text-zinc-400 flex items-center gap-4 mb-6;
+  @apply font-mono text-xs tracking-[0.12em] uppercase text-muted-foreground flex items-center gap-4 mb-6;
 }
 
 .section-eyebrow::before {
-  @apply content-[''] w-5 h-px bg-zinc-300;
+  @apply content-[''] w-5 h-px bg-border;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  @apply relative flex items-center justify-center w-10 h-10 rounded-full bg-muted hover:bg-accent transition-colors;
+}
+
+.theme-toggle svg {
+  @apply w-5 h-5 transition-all duration-300;
+}
+
+.theme-toggle .sun-icon {
+  @apply absolute rotate-0 scale-100;
+}
+
+.theme-toggle .moon-icon {
+  @apply absolute rotate-90 scale-0;
+}
+
+.dark .theme-toggle .sun-icon {
+  @apply rotate-90 scale-0;
+}
+
+.dark .theme-toggle .moon-icon {
+  @apply rotate-0 scale-100;
 }
 
 /* Reduced motion support */

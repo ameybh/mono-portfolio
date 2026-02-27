@@ -17,14 +17,24 @@ const {
 } = Astro.props;
 ---
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title}</title>
   <meta name="description" content={description} />
+  <meta name="theme-color" content="#09090b" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <ClientRouter />
+  
+  <!-- Theme initialization script - runs before page render to prevent flash -->
+  <script is:inline>
+    (function() {
+      const theme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.classList.toggle('dark', theme === 'dark');
+      document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'dark' ? '#09090b' : '#fafafa');
+    })();
+  </script>
 </head>
 <body>
   <Nav active={active} transition:persist />
@@ -45,7 +55,6 @@ const {
       // Magnetic button effect
       const magneticElements = document.querySelectorAll('.magnetic');
       magneticElements.forEach(el => {
-        // Skip if already initialized
         if (el.dataset.magneticInit) return;
         el.dataset.magneticInit = 'true';
         
@@ -59,21 +68,20 @@ const {
           el.style.transform = 'translate(0, 0)';
         });
       });
-
-      // Spotlight effect for cards
-      const spotlightCards = document.querySelectorAll('.spotlight');
-      spotlightCards.forEach(card => {
-        // Skip if already initialized
-        if (card.dataset.spotlightInit) return;
-        card.dataset.spotlightInit = 'true';
-        
-        card.addEventListener('mousemove', (e) => {
-          const rect = card.getBoundingClientRect();
-          const x = (e.clientX - rect.left) / rect.width;
-          const y = (e.clientY - rect.top) / rect.height;
-          card.style.setProperty('--mouse-x', String(x));
-          card.style.setProperty('--mouse-y', String(y));
-        });
+    })();
+  </script>
+  
+  <!-- Theme toggle handler -->
+  <script is:inline data-astro-rerun>
+    (function() {
+      const toggle = document.getElementById('theme-toggle');
+      if (!toggle || toggle.dataset.themeInit) return;
+      toggle.dataset.themeInit = 'true';
+      
+      toggle.addEventListener('click', () => {
+        const isDark = document.documentElement.classList.toggle('dark');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        document.querySelector('meta[name="theme-color"]')?.setAttribute('content', isDark ? '#09090b' : '#fafafa');
       });
     })();
   </script>

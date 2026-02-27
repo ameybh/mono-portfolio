@@ -16,23 +16,23 @@ const { Content } = await project.render();
 const { title, year, tagline, company, tags, metrics } = project.data;
 ---
 <BaseLayout title={`${title} — Amey Bhavsar`} description={tagline} active="work">
-  <div class="px-5 md:px-8 py-20 pb-16 border-b border-zinc-200 max-w-4xl mx-auto">
-    <a href="/#projects" class="inline-flex items-center gap-2 font-mono text-sm text-zinc-400 tracking-widest mb-12 transition-all hover:text-zinc-700 hover:-translate-x-1 magnetic">
+  <div class="px-5 md:px-8 py-20 pb-16 border-b border-border max-w-4xl mx-auto">
+    <a href="/#projects" class="inline-flex items-center gap-2 font-mono text-sm text-muted-foreground tracking-widest mb-12 transition-all hover:text-foreground hover:-translate-x-1 magnetic">
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
         <path d="M11 7H3M3 7l4-4M3 7l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
       Back to projects
     </a>
-    <div class="font-mono text-xs tracking-widest text-zinc-400 uppercase mb-6">{company} · {year}</div>
-    <h1 class="font-display font-bold text-4xl md:text-5xl lg:text-6xl tracking-tight text-zinc-950 leading-tight mb-4 text-balance">{title}</h1>
-    <p class="text-lg text-zinc-500 font-light mb-10 leading-relaxed">{tagline}</p>
+    <div class="font-mono text-xs tracking-widest text-muted-foreground uppercase mb-6">{company} · {year}</div>
+    <h1 class="font-display font-bold text-4xl md:text-5xl lg:text-6xl tracking-tight text-foreground leading-tight mb-4 text-balance">{title}</h1>
+    <p class="text-lg text-muted-foreground font-light mb-10 leading-relaxed">{tagline}</p>
 
     <!-- Metrics row -->
-    <div class="grid grid-cols-3 gap-px bg-zinc-200 border border-zinc-200 max-w-md">
+    <div class="grid grid-cols-3 gap-px bg-border border border-border max-w-md">
       {metrics.map((m: { value: string; label: string }) => (
-        <div class="bg-zinc-50 p-5 transition-colors hover:bg-zinc-100">
-          <div class="font-display font-bold text-3xl md:text-4xl tracking-tight text-zinc-950 mb-1">{m.value}</div>
-          <div class="font-mono text-xs tracking-widest text-zinc-500 uppercase">{m.label}</div>
+        <div class="bg-card p-5 transition-colors hover:bg-muted">
+          <div class="font-display font-bold text-3xl md:text-4xl tracking-tight text-foreground mb-1">{m.value}</div>
+          <div class="font-mono text-xs tracking-widest text-muted-foreground uppercase">{m.label}</div>
         </div>
       ))}
     </div>
