@@ -6,6 +6,6 @@ export default defineConfig({
   integrations: [mdx(), react()],
   prefetch: {
     prefetchAll: true,
-    defaultStrategy: 'hover',
+    defaultStrategy: 'viewport',
   },
 });

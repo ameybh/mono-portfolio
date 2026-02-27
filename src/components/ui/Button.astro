@@ -7,6 +7,7 @@ interface Props {
   href?: string;
   class?: string;
   magnetic?: boolean;
+  instant?: boolean;
 }
 
 const { 
@@ -15,6 +16,7 @@ const {
   href,
   class: className,
   magnetic = false,
+  instant = true,
 } = Astro.props;
 
 const baseStyles = 'inline-flex items-center justify-center gap-2 font-display font-medium tracking-tight transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50';
@@ -36,6 +38,10 @@ const classes = cn(baseStyles, variants[variant], sizes[size], magnetic && 'magn
 const Tag = href ? 'a' : 'button';
 ---
 
-<Tag href={href} class={classes}>
+<Tag 
+  href={href} 
+  class={classes}
+  data-instant={instant && href ? '' : undefined}
+>
   <slot />
 </Tag>

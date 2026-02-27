@@ -125,5 +125,29 @@ const {
       }, { passive: true });
     })();
   </script>
+  
+  <!-- Instant navigation on mousedown for faster perceived performance -->
+  <script is:inline data-astro-rerun>
+    (function() {
+      if (document.dataset.instantNavInit) return;
+      document.dataset.instantNavInit = 'true';
+      
+      document.addEventListener('mousedown', (e) => {
+        // Find closest anchor with data-instant
+        const link = e.target.closest('a[data-instant]');
+        if (!link) return;
+        
+        const href = link.getAttribute('href');
+        if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto:')) return;
+        
+        // Don't interfere with special clicks (ctrl, cmd, shift, middle click)
+        if (e.ctrlKey || e.metaKey || e.shiftKey || e.button !== 0) return;
+        
+        // Navigate immediately on mousedown
+        e.preventDefault();
+        window.location.href = href;
+      }, { capture: true });
+    })();
+  </script>
 </body>
 </html>
