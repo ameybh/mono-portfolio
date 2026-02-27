@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/ui/Breadcrumbs.astro';
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -18,9 +19,23 @@ function formatDate(date: Date) {
 }
 
 const tagList = post.data.tags?.split(',').map((t: string) => t.trim()) ?? [];
+
+const breadcrumbCrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Writing', href: '/blog' },
+  { label: post.data.title }
+];
 ---
-<BaseLayout title={`${post.data.title} — Amey Bhavsar`} description={post.data.summary} active="writing">
+<BaseLayout 
+  title={`${post.data.title} — Amey Bhavsar`} 
+  description={post.data.summary} 
+  active="writing"
+  type="article"
+  publishedAt={post.data.publishedAt}
+>
   <div class="max-w-[68ch] mx-auto px-5 md:px-8 py-20 pb-32">
+    <Breadcrumbs crumbs={breadcrumbCrumbs} />
+    
     <a href="/blog" class="inline-flex items-center gap-2 font-mono text-sm text-muted-foreground tracking-widest mb-12 transition-all hover:text-foreground hover:-translate-x-1 magnetic">
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
         <path d="M11 7H3M3 7l4-4M3 7l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>

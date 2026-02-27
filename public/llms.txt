@@ -1,0 +1,62 @@
+# Amey Bhavsar — Product Engineer · AI/ML
+
+> Product engineer with 3 years building AI/ML systems from scratch — video intelligence pipelines, multimodal models, and production microservices. Currently at Tessact, building video repurposing systems and face detection services for enterprise clients like JioHotstar and SunTV.
+
+## About
+
+I'm a product engineer focused on shipping end-to-end AI systems. Most of what I've built is in production and handles real load — not demos. At Tessact, I've worked on:
+
+- AI pipelines with LLM orchestration using PydanticAI and LangChain
+- Video processing infrastructure handling 500+ hours of content
+- Face tracking and detection systems replacing AWS Rekognition
+- React frontends that customers use daily
+
+Previously built Saathi, an AI mental health companion that achieved 95.51% accuracy on bipolar detection and placed 4th at IIT Bombay RESCON.
+
+## Skills
+
+- **AI/ML**: PyTorch, LLMs (GPT-4/5, Gemini 2.5), PydanticAI, LangChain, InsightFace, Whisper, CLIP
+- **Backend**: Python, FastAPI, Django, Celery, RabbitMQ, PostgreSQL, Redis
+- **Frontend**: React, Next.js, TypeScript, Tailwind CSS, Remotion
+- **Cloud**: GCP (Cloud Run), AWS (Lambda), Docker, Kubernetes
+
+## Projects
+
+- [TessactAI — Video Repurposing](/work/tessact-video-repurposing): Built solo in 2 months. Takes 2-hour podcasts and produces 30–40 branded social clips. Processed 500+ hours for enterprise POCs.
+- [Face Detection & Tracking Service](/work/face-detection-tracking): Replaced AWS Rekognition. Cut cost from $6 to $0.15 per hour — saves $2,500/month. Production for JioHotstar and SunTV.
+- [Saathi — AI Mental Health Companion](/work/saathi): CNN + LSTM system trained on 100k+ Reddit posts. 4th at IIT Bombay RESCON. Published IEEE.
+
+## Writing
+
+- [Midgame Position](/blog/midgame-position): On career trajectory and engineering growth
+- [Finale of Engineering](/blog/finale-of-engineering): Reflections on graduating and starting as an engineer
+- [VS Code Extensions](/blog/vscode-extensions): Tools for productive development
+
+## Experience
+
+- **Software Development Engineer II** — Tessact (Jan 2026 – Present)
+- **Software Development Engineer** — Tessact (Jul 2022 – Dec 2025)
+
+## Education
+
+- **BE Computer Engineering** — University of Mumbai (2019–2023)
+- CGPA: 9.15 / 10
+- IELTS: Band 8 (C1)
+
+## Achievements
+
+- CodeChef: 1821 rating (Rank 104 globally)
+- Codeforces: 1444 rating (Rank 1315 globally)
+- GRE Verbal: 169/170
+- IIT Bombay RESCON: 4th place nationally
+
+## Contact
+
+- Email: [ameybhavsar10@gmail.com](mailto:ameybhavsar10@gmail.com)
+- GitHub: [github.com/ameybh](https://github.com/ameybh)
+- LinkedIn: [linkedin.com/in/amey-bhavsar](https://linkedin.com/in/amey-bhavsar)
+- Website: [ameybhavsar.com](https://ameybhavsar.com)
+
+## Optional
+
+- [Resume/CV](https://ameybhavsar.com/Amey-Bhavsar-Product-Engineer-AI-ML-Resume.pdf): Detailed work history and projects

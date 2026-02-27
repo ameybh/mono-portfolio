@@ -57,7 +57,7 @@ const contactLinks = [
   { label: 'Email', value: 'ameybhavsar10@gmail.com', href: 'mailto:ameybhavsar10@gmail.com' },
   { label: 'GitHub', value: 'github.com/ameybh', href: 'https://github.com/ameybh' },
   { label: 'LinkedIn', value: 'linkedin.com/in/amey-bhavsar', href: 'https://linkedin.com/in/amey-bhavsar' },
-  { label: 'Website', value: 'ameybhavsar.com', href: 'https://ameybhavsar.com' },
+  { label: 'Resume', value: 'PDF', href: '/Amey-Bhavsar-Product-Engineer-AI-ML-Resume.pdf' },
 ];
 ---
 <BaseLayout active="work">
@@ -372,7 +372,7 @@ const contactLinks = [
     
     <div class="flex flex-col">
       {contactLinks.map(link => (
-        <a href={link.href} data-instant={!link.href.startsWith('http') ? true : undefined} target={link.href.startsWith('http') ? '_blank' : undefined} rel={link.href.startsWith('http') ? 'noopener' : undefined} class="contact-link-row group flex justify-between items-center py-6 border-b border-border transition-all hover:pl-2 hover:-ml-2 hover:bg-gradient-to-r hover:from-muted hover:to-transparent relative">
+        <a href={link.href} data-instant={!link.href.startsWith('http') && !link.href.endsWith('.pdf') ? true : undefined} target={link.href.startsWith('http') || link.href.endsWith('.pdf') ? '_blank' : undefined} rel={link.href.startsWith('http') || link.href.endsWith('.pdf') ? 'noopener' : undefined} class="contact-link-row group flex justify-between items-center py-6 border-b border-border transition-all hover:pl-2 hover:-ml-2 hover:bg-gradient-to-r hover:from-muted hover:to-transparent relative">
           <span class="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-0 bg-foreground transition-all group-hover:h-[60%]"></span>
           <span class="font-display font-medium text-base text-foreground tracking-tight">{link.label}</span>
           <span class="font-mono text-sm text-muted-foreground tracking-wide group-hover:text-foreground transition-colors">{link.value}</span>

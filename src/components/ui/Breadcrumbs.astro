@@ -1,0 +1,42 @@
+---
+interface Crumb {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  crumbs: Crumb[];
+}
+
+const { crumbs } = Astro.props;
+
+// Build structured data for breadcrumbs
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": crumbs.map((crumb, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "name": crumb.label,
+    ...(crumb.href && { "item": `https://ameybhavsar.com${crumb.href}` })
+  }))
+};
+---
+
+<nav aria-label="Breadcrumb" class="mb-8">
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <ol class="flex items-center gap-2 font-mono text-xs text-muted-foreground tracking-wide flex-wrap">
+    {crumbs.map((crumb, index) => (
+      <li class="flex items-center gap-2">
+        {index > 0 && <span class="text-border">/</span>}
+        {crumb.href ? (
+          <a href={crumb.href} class="hover:text-foreground transition-colors">
+            {crumb.label}
+          </a>
+        ) : (
+          <span class="text-foreground">{crumb.label}</span>
+        )}
+      </li>
+    ))}
+  </ol>
+</nav>

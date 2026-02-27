@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/ui/Breadcrumbs.astro';
 import Eyebrow from '@/components/ui/Eyebrow.astro';
 import Badge from '@/components/ui/Badge.astro';
 import { getCollection } from 'astro:content';
@@ -10,9 +11,16 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 function formatDate(date: Date) {
   return date.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
 }
+
+const breadcrumbCrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Writing' }
+];
 ---
 <BaseLayout title="Writing — Amey Bhavsar" active="writing">
   <div class="max-w-4xl mx-auto px-5 md:px-8 py-20 pb-32">
+    <Breadcrumbs crumbs={breadcrumbCrumbs} />
+    
     <div class="mb-16 pb-16 border-b border-border">
       <Eyebrow class="mb-6">Writing</Eyebrow>
       <h1 class="font-display font-bold text-4xl md:text-5xl lg:text-6xl tracking-tight text-foreground leading-tight text-balance">
@@ -23,7 +31,7 @@ function formatDate(date: Date) {
       {posts.map((post, index) => {
         const tagList = post.data.tags?.split(',').map((t: string) => t.trim()) ?? [];
         return (
-          <a href={`/blog/${post.slug}`} class="group grid md:grid-cols-[1fr_auto] gap-6 md:gap-8 py-8 border-b border-border items-center transition-all hover:bg-gradient-to-r hover:from-muted hover:to-transparent hover:pl-3 hover:-ml-3" style={`--stagger-index: ${index}`}>
+          <a href={`/blog/${post.slug}`} data-instant class="group grid md:grid-cols-[1fr_auto] gap-6 md:gap-8 py-8 border-b border-border items-center transition-all hover:bg-gradient-to-r hover:from-muted hover:to-transparent hover:pl-3 hover:-ml-3" style={`--stagger-index: ${index}`}>
             <div>
               <div class="font-mono text-sm text-muted-foreground tracking-widest mb-2">{formatDate(post.data.publishedAt)}</div>
               <div class="font-display font-semibold text-xl text-foreground tracking-tight mb-1 group-hover:text-muted-foreground transition-colors">{post.data.title}</div>

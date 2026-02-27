@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/ui/Breadcrumbs.astro';
 import Badge from '@/components/ui/Badge.astro';
 import { getCollection } from 'astro:content';
 
@@ -14,9 +15,17 @@ export async function getStaticPaths() {
 const { project } = Astro.props;
 const { Content } = await project.render();
 const { title, year, tagline, company, tags, metrics } = project.data;
+
+const breadcrumbCrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Work', href: '/#projects' },
+  { label: title }
+];
 ---
 <BaseLayout title={`${title} — Amey Bhavsar`} description={tagline} active="work">
   <div class="px-5 md:px-8 py-20 pb-16 border-b border-border max-w-4xl mx-auto">
+    <Breadcrumbs crumbs={breadcrumbCrumbs} />
+    
     <a href="/#projects" class="inline-flex items-center gap-2 font-mono text-sm text-muted-foreground tracking-widest mb-12 transition-all hover:text-foreground hover:-translate-x-1 magnetic">
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
         <path d="M11 7H3M3 7l4-4M3 7l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
