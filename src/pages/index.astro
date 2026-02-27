@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import MarqueeBand from '../components/MarqueeBand.astro';
+import { VelocityMarquee } from '../components/VelocityMarquee';
 import Button from '@/components/ui/Button.astro';
 import Badge from '@/components/ui/Badge.astro';
 import Eyebrow from '@/components/ui/Eyebrow.astro';
@@ -123,23 +123,25 @@ const contactLinks = [
     </div>
     
     <!-- Stats -->
-    <div class="grid grid-cols-3 gap-px bg-border border border-border">
-      {[
-        { value: '3+', label: 'Years' },
-        { value: '500+', label: 'Hrs processed' },
-        { value: '95%', label: 'Post quality' },
-      ].map(stat => (
-        <div class="bg-card p-5 transition-colors hover:bg-muted">
-          <div class="font-display font-bold text-3xl md:text-4xl tracking-tight text-foreground mb-1">{stat.value}</div>
-          <div class="font-mono text-xs tracking-widest uppercase text-muted-foreground">{stat.label}</div>
-        </div>
-      ))}
+    <div class="border border-border">
+      <div class="grid grid-cols-3 gap-px bg-border">
+        {[
+          { value: '3+', label: 'Years' },
+          { value: '500+', label: 'Hrs processed' },
+          { value: '95%', label: 'Post quality' },
+        ].map(stat => (
+          <div class="bg-card p-5 transition-colors hover:bg-muted">
+            <div class="font-display font-bold text-3xl md:text-4xl tracking-tight text-foreground mb-1">{stat.value}</div>
+            <div class="font-mono text-xs tracking-widest uppercase text-muted-foreground">{stat.label}</div>
+          </div>
+        ))}
+      </div>
     </div>
   </div>
 </section>
 
 <!-- MARQUEE -->
-<MarqueeBand />
+<VelocityMarquee client:load />
 
 <!-- PROJECTS -->
 <section class="projects-section px-5 md:px-7 lg:px-12 py-20 lg:py-28 border-b border-border" id="projects">
@@ -156,69 +158,71 @@ const contactLinks = [
     </a>
   </div>
   
-  <div class="grid lg:grid-cols-[3fr_2fr] gap-px bg-border">
-    <!-- Featured -->
-    <div class="project-featured bg-elevated border border-elevated-border p-8 lg:p-12 flex flex-col justify-between min-h-[520px] group">
-      <div class="font-mono text-xs tracking-widest text-elevated-muted">01 / 03 — Tessact · 2026</div>
-      <div>
-        <h3 class="project-featured-title font-display font-bold text-3xl md:text-4xl tracking-tight text-elevated-foreground leading-tight mb-4">
-          TessactAI —<br>Video Repurposing
-        </h3>
-        <p class="text-base text-elevated-muted font-light leading-relaxed max-w-md mb-8">
-          Built solo in 2 months. Takes 2-hour podcasts and produces
-          30–40 branded social clips. Replaces 4 weeks of manual editing
-          with 1 hour at 95% ready-to-post quality. Processed 500+ hours
-          for enterprise POCs including Garena Free Fire.
-        </p>
-        <div class="flex flex-wrap gap-2 mb-8">
-          {['FastAPI', 'PydanticAI', 'Celery', 'Remotion', 'AWS Lambda', 'GCP'].map(tag => (
-            <span class="font-mono text-xs text-elevated-muted border border-elevated-muted/30 px-2 py-0.5 tracking-wide uppercase">{tag}</span>
-          ))}
+  <div class="border border-border">
+    <div class="grid lg:grid-cols-[3fr_2fr] gap-px bg-border">
+      <!-- Featured -->
+      <div class="project-featured bg-elevated p-8 lg:p-12 flex flex-col justify-between min-h-[520px] group">
+        <div class="font-mono text-xs tracking-widest text-elevated-muted">01 / 03 — Tessact · 2026</div>
+        <div>
+          <h3 class="project-featured-title font-display font-bold text-3xl md:text-4xl tracking-tight text-elevated-foreground leading-tight mb-4">
+            TessactAI —<br>Video Repurposing
+          </h3>
+          <p class="text-base text-elevated-muted font-light leading-relaxed max-w-md mb-8">
+            Built solo in 2 months. Takes 2-hour podcasts and produces
+            30–40 branded social clips. Replaces 4 weeks of manual editing
+            with 1 hour at 95% ready-to-post quality. Processed 500+ hours
+            for enterprise POCs including Garena Free Fire.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-8">
+            {['FastAPI', 'PydanticAI', 'Celery', 'Remotion', 'AWS Lambda', 'GCP'].map(tag => (
+              <span class="font-mono text-xs text-elevated-muted border border-elevated-muted/30 px-2 py-0.5 tracking-wide uppercase">{tag}</span>
+            ))}
+          </div>
+          <a href="/work/tessact-video-repurposing" class="inline-flex items-center gap-2 font-display font-medium text-sm bg-background text-foreground border border-border px-5 py-2.5 transition-all hover:translate-x-1 magnetic">
+            Read case study
+            <svg class="w-3 h-3" viewBox="0 0 11 11" fill="none"><path d="M1.5 9.5l8-8M1.5 1.5H9.5v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
         </div>
-        <a href="/work/tessact-video-repurposing" class="inline-flex items-center gap-2 font-display font-medium text-sm bg-background text-foreground border border-border px-5 py-2.5 transition-all hover:translate-x-1 magnetic">
-          Read case study
-          <svg class="w-3 h-3" viewBox="0 0 11 11" fill="none"><path d="M1.5 9.5l8-8M1.5 1.5H9.5v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    
+      <!-- Cards column -->
+      <div class="grid grid-rows-2 gap-px bg-border">
+        <!-- Face Detection -->
+        <a href="/work/face-detection-tracking" class="project-card bg-card p-8 lg:p-9 flex flex-col justify-between transition-all hover:bg-muted hover:-translate-y-0.5 hover:shadow-lg group">
+          <div>
+            <div class="font-mono text-xs tracking-widest text-muted-foreground mb-8">02 / 03 — Tessact · 2022–25</div>
+            <h4 class="font-display font-semibold text-xl md:text-2xl tracking-tight text-foreground leading-tight mb-2">
+              Face Detection & Tracking Service
+            </h4>
+            <p class="text-base text-muted-foreground font-light leading-relaxed">
+              Replaced AWS Rekognition. Cut cost from $6 to $0.15 per hour — saves $2,500/month. Runs in production for JioHotstar and SunTV.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-1.5 mt-6">
+            {['InsightFace', 'Python', 'Docker'].map(tag => (
+              <Badge size="sm">{tag}</Badge>
+            ))}
+          </div>
+        </a>
+        
+        <!-- Saathi -->
+        <a href="/work/saathi" class="project-card bg-card p-8 lg:p-9 flex flex-col justify-between transition-all hover:bg-muted hover:-translate-y-0.5 hover:shadow-lg group">
+          <div>
+            <div class="font-mono text-xs tracking-widest text-muted-foreground mb-8">03 / 03 — Thesis · IEEE 2023</div>
+            <h4 class="font-display font-semibold text-xl md:text-2xl tracking-tight text-foreground leading-tight mb-2">
+              Saathi — AI Mental Health Companion
+            </h4>
+            <p class="text-base text-muted-foreground font-light leading-relaxed">
+              CNN + LSTM system trained on 100k+ Reddit posts. 95.51% accuracy on bipolar detection. 4th at IIT Bombay RESCON. Published IEEE.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-1.5 mt-6">
+            {['TensorFlow', 'LSTM', 'RASA'].map(tag => (
+              <Badge size="sm">{tag}</Badge>
+            ))}
+          </div>
         </a>
       </div>
-    </div>
-    
-    <!-- Cards column -->
-    <div class="grid grid-rows-2 gap-px bg-border">
-      <!-- Face Detection -->
-      <a href="/work/face-detection-tracking" class="project-card bg-card p-8 lg:p-9 flex flex-col justify-between transition-all hover:bg-muted hover:-translate-y-0.5 hover:shadow-lg group">
-        <div>
-          <div class="font-mono text-xs tracking-widest text-muted-foreground mb-8">02 / 03 — Tessact · 2022–25</div>
-          <h4 class="font-display font-semibold text-xl md:text-2xl tracking-tight text-foreground leading-tight mb-2">
-            Face Detection & Tracking Service
-          </h4>
-          <p class="text-base text-muted-foreground font-light leading-relaxed">
-            Replaced AWS Rekognition. Cut cost from $6 to $0.15 per hour — saves $2,500/month. Runs in production for JioHotstar and SunTV.
-          </p>
-        </div>
-        <div class="flex flex-wrap gap-1.5 mt-6">
-          {['InsightFace', 'Python', 'Docker'].map(tag => (
-            <Badge size="sm">{tag}</Badge>
-          ))}
-        </div>
-      </a>
-      
-      <!-- Saathi -->
-      <a href="/work/saathi" class="project-card bg-card p-8 lg:p-9 flex flex-col justify-between transition-all hover:bg-muted hover:-translate-y-0.5 hover:shadow-lg group">
-        <div>
-          <div class="font-mono text-xs tracking-widest text-muted-foreground mb-8">03 / 03 — Thesis · IEEE 2023</div>
-          <h4 class="font-display font-semibold text-xl md:text-2xl tracking-tight text-foreground leading-tight mb-2">
-            Saathi — AI Mental Health Companion
-          </h4>
-          <p class="text-base text-muted-foreground font-light leading-relaxed">
-            CNN + LSTM system trained on 100k+ Reddit posts. 95.51% accuracy on bipolar detection. 4th at IIT Bombay RESCON. Published IEEE.
-          </p>
-        </div>
-        <div class="flex flex-wrap gap-1.5 mt-6">
-          {['TensorFlow', 'LSTM', 'RASA'].map(tag => (
-            <Badge size="sm">{tag}</Badge>
-          ))}
-        </div>
-      </a>
     </div>
   </div>
 </section>
@@ -234,19 +238,21 @@ const contactLinks = [
     </div>
   </div>
   
-  <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-elevated-border">
-    {techStack.map(item => (
-      <div class="bg-elevated border border-elevated-border p-8 transition-colors hover:bg-accent group">
-        <div class="font-mono text-xs tracking-widest text-elevated-muted uppercase mb-5">{item.category}</div>
-        <h3 class="font-display font-semibold text-lg text-elevated-foreground tracking-tight mb-1.5 transition-colors">{item.title}</h3>
-        <p class="text-base text-elevated-muted leading-relaxed mb-5">{item.desc}</p>
-        <div class="flex flex-wrap gap-1.5">
-          {item.tools.map(tool => (
-            <span class="font-mono text-xs text-elevated-muted border border-elevated-border px-2 py-0.5 tracking-wide">{tool}</span>
-          ))}
+  <div class="border border-elevated-border">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-elevated-border">
+      {techStack.map(item => (
+        <div class="bg-elevated p-8 transition-colors hover:bg-accent group">
+          <div class="font-mono text-xs tracking-widest text-elevated-muted uppercase mb-5">{item.category}</div>
+          <h3 class="font-display font-semibold text-lg text-elevated-foreground tracking-tight mb-1.5 transition-colors">{item.title}</h3>
+          <p class="text-base text-elevated-muted leading-relaxed mb-5">{item.desc}</p>
+          <div class="flex flex-wrap gap-1.5">
+            {item.tools.map(tool => (
+              <span class="font-mono text-xs text-elevated-muted border border-elevated-border px-2 py-0.5 tracking-wide">{tool}</span>
+            ))}
+          </div>
         </div>
-      </div>
-    ))}
+      ))}
+    </div>
   </div>
 </section>
 
