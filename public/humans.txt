@@ -1,0 +1,27 @@
+# humans.txt for ameybhavsar.com
+# This file provides information about the creator of this website
+
+/* TEAM */
+Name: Amey Bhavsar
+Role: Product Engineer, AI/ML Specialist
+Location: Bengaluru, India
+Contact: ameybhavsar10@gmail.com
+GitHub: https://github.com/ameybh
+LinkedIn: https://linkedin.com/in/amey-bhavsar
+Twitter: @ameybhavsar
+
+/* THANKS */
+Thanks to all my colleagues at Tessact for the amazing journey.
+Thanks to the open source community for the tools and libraries.
+
+/* SITE */
+Last update: 2026-02-27
+Standards: HTML5, CSS3, TypeScript
+Components: Astro, React, Tailwind CSS
+Software: VS Code, Node.js, Git
+
+/* TECHNOLOGY */
+Built with: Astro.js
+Styling: Tailwind CSS
+Fonts: Inter (Sans), JetBrains Mono (Monospace)
+Hosting: Static site generation

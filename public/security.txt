@@ -1,0 +1,11 @@
+# Security.txt for ameybhavsar.com
+# This file provides contact information for reporting security vulnerabilities
+
+Contact: mailto:ameybhavsar10@gmail.com
+Expires: 2027-02-27T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://ameybhavsar.com/.well-known/security.txt
+Policy: https://ameybhavsar.com
+
+# Please report any security vulnerabilities to the contact above.
+# I appreciate responsible disclosure and will respond promptly.
