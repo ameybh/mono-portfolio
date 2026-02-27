@@ -36,7 +36,7 @@ const {
     })();
   </script>
 </head>
-<body>
+<body class="pt-[72px]">
   <Nav active={active} transition:persist />
   <main>
     <slot />
@@ -83,6 +83,46 @@ const {
         localStorage.setItem('theme', isDark ? 'dark' : 'light');
         document.querySelector('meta[name="theme-color"]')?.setAttribute('content', isDark ? '#09090b' : '#fafafa');
       });
+    })();
+  </script>
+  
+  <!-- Smart navbar - hide on scroll down, show on scroll up -->
+  <script is:inline data-astro-rerun>
+    (function() {
+      const nav = document.querySelector('nav');
+      if (!nav || nav.dataset.scrollInit) return;
+      nav.dataset.scrollInit = 'true';
+      
+      let lastScrollY = window.scrollY;
+      let ticking = false;
+      
+      function updateNav() {
+        const currentScrollY = window.scrollY;
+        
+        // Only trigger after scrolling past navbar height
+        if (currentScrollY > 80) {
+          if (currentScrollY > lastScrollY) {
+            // Scrolling down - hide nav
+            nav.style.transform = 'translateY(-100%)';
+          } else {
+            // Scrolling up - show nav
+            nav.style.transform = 'translateY(0)';
+          }
+        } else {
+          // At top - always show
+          nav.style.transform = 'translateY(0)';
+        }
+        
+        lastScrollY = currentScrollY;
+        ticking = false;
+      }
+      
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          requestAnimationFrame(updateNav);
+          ticking = true;
+        }
+      }, { passive: true });
     })();
   </script>
 </body>

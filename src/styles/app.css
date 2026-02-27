@@ -163,6 +163,12 @@
   will-change: transform;
 }
 
+/* Smart navbar - smooth slide animation */
+nav {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
 /* Status dot pulse animation */
 .status-dot {
   animation: pulse 2.5s ease-in-out infinite;
