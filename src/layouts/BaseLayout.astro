@@ -2,6 +2,7 @@
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
+import { ViewTransitions } from 'astro:transitions';
 
 interface Props {
   title?: string;
@@ -16,17 +17,56 @@ const {
 } = Astro.props;
 ---
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" transition:animate="fade">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title}</title>
   <meta name="description" content={description} />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <ViewTransitions />
 </head>
 <body>
   <Nav active={active} />
-  <slot />
+  <main transition:animate="fade">
+    <slot />
+  </main>
   <Footer />
+  <script>
+    // Microinteraction utilities
+    document.addEventListener('astro:page-load', () => {
+      // Staggered reveal for lists
+      const revealElements = document.querySelectorAll('.stagger-reveal');
+      revealElements.forEach((el, i) => {
+        (el as HTMLElement).style.setProperty('--stagger-index', String(i));
+      });
+
+      // Magnetic button effect
+      const magneticElements = document.querySelectorAll('.magnetic');
+      magneticElements.forEach(el => {
+        el.addEventListener('mousemove', (e) => {
+          const rect = (el as HTMLElement).getBoundingClientRect();
+          const x = (e as MouseEvent).clientX - rect.left - rect.width / 2;
+          const y = (e as MouseEvent).clientY - rect.top - rect.height / 2;
+          (el as HTMLElement).style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+        });
+        el.addEventListener('mouseleave', () => {
+          (el as HTMLElement).style.transform = 'translate(0, 0)';
+        });
+      });
+
+      // Spotlight effect for cards
+      const spotlightCards = document.querySelectorAll('.spotlight');
+      spotlightCards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = (card as HTMLElement).getBoundingClientRect();
+          const x = ((e as MouseEvent).clientX - rect.left) / rect.width;
+          const y = ((e as MouseEvent).clientY - rect.top) / rect.height;
+          (card as HTMLElement).style.setProperty('--mouse-x', String(x));
+          (card as HTMLElement).style.setProperty('--mouse-y', String(y));
+        });
+      });
+    });
+  </script>
 </body>
 </html>

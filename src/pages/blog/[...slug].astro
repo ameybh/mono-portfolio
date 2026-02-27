@@ -26,8 +26,8 @@ const tagList = post.data.tags?.split(',').map((t: string) => t.trim()) ?? [];
   backLabel="Back to writing"
   active="writing"
 >
-  <div class="prose-header">
-    <div class="prose-title">{post.data.title}</div>
+  <div class="prose-header" transition:name="prose-header">
+    <div class="prose-title" transition:name={`title-${post.slug}`}>{post.data.title}</div>
     <div class="prose-meta">
       <span class="prose-date">{formatDate(post.data.publishedAt)}</span>
       {tagList.length > 0 && (

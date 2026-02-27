@@ -2,7 +2,7 @@
 const { active } = Astro.props;
 ---
 <nav>
-  <a href="/" class="nav-logo">AB</a>
+  <a href="/" class="nav-logo magnetic">AB</a>
   <div class="nav-center">
     <a href="/#projects" class:list={['nav-link', { active: active === 'work' }]}>Work</a>
     <a href="/#about" class:list={['nav-link', { active: active === 'about' }]}>About</a>
@@ -13,6 +13,6 @@ const { active } = Astro.props;
       <div class="status-dot"></div>
       Open to Germany roles
     </div>
-    <a href="mailto:ameybhavsar10@gmail.com" class="nav-cta">Get in touch</a>
+    <a href="mailto:ameybhavsar10@gmail.com" class="nav-cta magnetic">Get in touch</a>
   </div>
 </nav>

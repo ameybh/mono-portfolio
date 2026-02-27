@@ -28,11 +28,11 @@ function formatDate(str: string) {
       microservices. Currently at Tessact. Seeking roles in Germany.
     </p>
     <div class="hero-actions">
-      <a href="#projects" class="btn-primary">
+      <a href="#projects" class="btn-primary magnetic">
         View my work
         <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2.5 10.5l8-8M2.5 2.5H10.5v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
-      <a href="#about" class="btn-secondary">Read about me</a>
+      <a href="#about" class="btn-secondary magnetic">Read about me</a>
     </div>
   </div>
 
@@ -112,7 +112,7 @@ function formatDate(str: string) {
           <span class="tag">AWS Lambda</span>
           <span class="tag">GCP</span>
         </div>
-        <a href="/work/tessact-video-repurposing" class="project-cta">
+        <a href="/work/tessact-video-repurposing" class="project-cta magnetic">
           Read case study
           <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M1.5 9.5l8-8M1.5 1.5H9.5v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
@@ -281,10 +281,10 @@ function formatDate(str: string) {
     </a>
   </div>
   <div class="writing-list">
-    {posts.map(post => {
+    {posts.map((post, index) => {
       const tagList = post.data.tags?.split(',').map((t: string) => t.trim()) ?? [];
       return (
-        <a href={`/blog/${post.slug}`} class="writing-item">
+        <a href={`/blog/${post.slug}`} class="writing-item stagger-reveal" style={`--stagger-index: ${index}`}>
           <div>
             <div class="writing-date">{formatDate(post.data.publishedAt)}</div>
             <div class="writing-title">{post.data.title}</div>

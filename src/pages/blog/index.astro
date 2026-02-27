@@ -16,10 +16,10 @@ function formatDate(str: string) {
       <h1 style="font-family:'Space Grotesk',sans-serif; font-size:clamp(2.5rem,5vw,3.5rem); font-weight:700; letter-spacing:-0.04em; color:var(--z-950); line-height:1.1;">From the<br>notebook.</h1>
     </div>
     <div class="blog-list">
-      {posts.map(post => {
+      {posts.map((post, index) => {
         const tagList = post.data.tags?.split(',').map((t: string) => t.trim()) ?? [];
         return (
-          <a href={`/blog/${post.slug}`} class="writing-item">
+          <a href={`/blog/${post.slug}`} class="writing-item stagger-reveal" style={`--stagger-index: ${index}`}>
             <div>
               <div class="writing-date">{formatDate(post.data.publishedAt)}</div>
               <div class="writing-title">{post.data.title}</div>
