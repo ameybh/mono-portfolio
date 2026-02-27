@@ -28,13 +28,15 @@ const { title, year, tagline, company, tags, metrics } = project.data;
     <p class="text-lg text-muted-foreground font-light mb-10 leading-relaxed">{tagline}</p>
 
     <!-- Metrics row -->
-    <div class="grid grid-cols-3 gap-px bg-border border border-border max-w-md">
-      {metrics.map((m: { value: string; label: string }) => (
-        <div class="bg-card p-5 transition-colors hover:bg-muted">
-          <div class="font-display font-bold text-3xl md:text-4xl tracking-tight text-foreground mb-1">{m.value}</div>
-          <div class="font-mono text-xs tracking-widest text-muted-foreground uppercase">{m.label}</div>
-        </div>
-      ))}
+    <div class="border border-border max-w-md">
+      <div class="grid grid-cols-3 gap-px bg-border">
+        {metrics.map((m: { value: string; label: string }) => (
+          <div class="bg-card p-5 transition-colors hover:bg-muted">
+            <div class="font-display font-bold text-3xl md:text-4xl tracking-tight text-foreground mb-1">{m.value}</div>
+            <div class="font-mono text-xs tracking-widest text-muted-foreground uppercase">{m.label}</div>
+          </div>
+        ))}
+      </div>
     </div>
 
     <!-- Tags -->
