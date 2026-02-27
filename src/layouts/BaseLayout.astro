@@ -12,6 +12,10 @@ interface Props {
   type?: string;
   publishedAt?: Date;
   modifiedAt?: Date;
+  ogTitle?: string;
+  ogDescription?: string;
+  twitterTitle?: string;
+  twitterDescription?: string;
 }
 
 const {
@@ -22,6 +26,12 @@ const {
   type = 'website',
   publishedAt,
   modifiedAt,
+  // Optimized for Open Graph (25-35 chars for title, 55-65 for description)
+  ogTitle = 'Amey Bhavsar · AI/ML Product Engineer',
+  ogDescription = 'Building AI systems from scratch — video intelligence, multimodal models, production microservices.',
+  // Optimized for Twitter (50-70 chars for title, 150-200 for description)
+  twitterTitle = 'Amey Bhavsar — Product Engineer specializing in AI/ML systems',
+  twitterDescription = 'Product engineer with 3 years building AI/ML systems from scratch. Video intelligence, multimodal models, production microservices. Currently at Tessact, open to new roles.',
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, 'https://ameybhavsar.com').toString();
@@ -73,6 +83,10 @@ const websiteSchema = {
   "author": {
     "@type": "Person",
     "name": "Amey Bhavsar"
+  },
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": ["h1", ".hero-description", "h2"]
   }
 };
 
@@ -101,9 +115,16 @@ if (type === 'article' && publishedAt) {
         "@type": "ImageObject",
         "url": "https://ameybhavsar.com/og-image.png"
       }
+    },
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": ["h1", ".prose-body p:first-child"]
     }
   };
 }
+
+// Get current date for copyright
+const currentYear = new Date().getFullYear();
 ---
 
 <!DOCTYPE html>
@@ -111,45 +132,69 @@ if (type === 'article' && publishedAt) {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- Primary Meta Tags -->
   <title>{title}</title>
   <meta name="description" content={description} />
-  <meta name="keywords" content="Amey Bhavsar, Product Engineer, AI Engineer, ML Engineer, Software Engineer, PyTorch, FastAPI, React, Next.js, Video Intelligence, LLMs, Python" />
+  <meta name="keywords" content="Amey Bhavsar, Product Engineer, AI Engineer, ML Engineer, Software Engineer, PyTorch, FastAPI, React, Next.js, Video Intelligence, LLMs, Python, Bengaluru, India" />
   <meta name="author" content="Amey Bhavsar" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="googlebot" content="index, follow" />
+  <meta name="bingbot" content="index, follow" />
   
   <!-- Canonical URL -->
   <link rel="canonical" href={canonicalURL} />
   
-  <!-- Theme color for Chrome/Android address bar and tab switcher -->
+  <!-- Language -->
+  <meta name="language" content="English" />
+  <meta http-equiv="content-language" content="en-US" />
+  
+  <!-- Mobile Optimization -->
+  <meta name="format-detection" content="telephone=no" />
   <meta name="theme-color" content="#111111" media="(prefers-color-scheme: dark)" />
   <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)" />
   
-  <!-- Apple mobile web app status bar style -->
+  <!-- Apple mobile web app -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Amey Bhavsar" />
   
-  <!-- Open Graph / Facebook -->
+  <!-- Open Graph / Facebook (Optimized lengths) -->
   <meta property="og:type" content={type} />
   <meta property="og:url" content={canonicalURL} />
-  <meta property="og:title" content={title} />
-  <meta property="og:description" content={description} />
+  <meta property="og:title" content={ogTitle} />
+  <meta property="og:description" content={ogDescription} />
   <meta property="og:image" content={ogImageURL} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content={ogTitle} />
   <meta property="og:site_name" content="Amey Bhavsar" />
   <meta property="og:locale" content="en_US" />
   {publishedAt && <meta property="article:published_time" content={publishedAt.toISOString()} />}
   {modifiedAt && <meta property="article:modified_time" content={modifiedAt.toISOString()} />}
+  <meta property="article:author" content="https://ameybhavsar.com" />
   
-  <!-- Twitter Card -->
+  <!-- Twitter Card (Optimized lengths) -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@ameybhavsar" />
   <meta name="twitter:creator" content="@ameybhavsar" />
-  <meta name="twitter:title" content={title} />
-  <meta name="twitter:description" content={description} />
+  <meta name="twitter:title" content={twitterTitle} />
+  <meta name="twitter:description" content={twitterDescription} />
   <meta name="twitter:image" content={ogImageURL} />
-  <meta name="twitter:image:alt" content={title} />
+  <meta name="twitter:image:alt" content={twitterTitle} />
+  
+  <!-- Alternate Links -->
+  <link rel="alternate" type="application/rss+xml" title="Amey Bhavsar - Blog RSS Feed" href="https://ameybhavsar.com/rss.xml" />
   
   <!-- Structured Data -->
   <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
   {pageSchema && <script type="application/ld+json" set:html={JSON.stringify(pageSchema)} />}
+  
+  <!-- AI Search Engine Optimization - GEO Enhancement -->
+  <meta name="ai-search-optimized" content="true" />
+  <meta name="content-type" content={type} />
+  <meta name="last-modified" content={modifiedAt?.toISOString() || publishedAt?.toISOString() || new Date().toISOString()} />
   
   <ClientRouter />
   

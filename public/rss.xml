@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Amey Bhavsar — Writing</title>
+    <link>https://ameybhavsar.com/blog</link>
+    <description>Product engineer with 3 years building AI/ML systems from scratch — video intelligence pipelines, multimodal models, and production microservices.</description>
+    <language>en-US</language>
+    <lastBuildDate>Thu, 27 Feb 2026 00:00:00 GMT</lastBuildDate>
+    <atom:link href="https://ameybhavsar.com/rss.xml" rel="self" type="application/rss+xml"/>
+    
+    <item>
+      <title>Useful Visual Studio Code Extensions</title>
+      <link>https://ameybhavsar.com/blog/vscode-extensions</link>
+      <guid>https://ameybhavsar.com/blog/vscode-extensions</guid>
+      <pubDate>Sat, 02 Feb 2024 00:00:00 GMT</pubDate>
+      <description>VS Code extensions I actually use. Most lists like this are filler — these aren't.</description>
+    </item>
+    
+    <item>
+      <title>Midgame position analysis</title>
+      <link>https://ameybhavsar.com/blog/midgame-position</link>
+      <guid>https://ameybhavsar.com/blog/midgame-position</guid>
+      <pubDate>Sun, 16 Oct 2022 00:00:00 GMT</pubDate>
+      <description>A month into my first internship at Tessact. On task management, not being overwhelmed, and what it's like when the job finally starts to feel natural.</description>
+    </item>
+    
+    <item>
+      <title>Finale of Engineering</title>
+      <link>https://ameybhavsar.com/blog/finale-of-engineering</link>
+      <guid>https://ameybhavsar.com/blog/finale-of-engineering</guid>
+      <pubDate>Thu, 15 Jun 2023 00:00:00 GMT</pubDate>
+      <description>Reflections on graduating and starting as an engineer.</description>
+    </item>
+    
+    <item>
+      <title>Building a WhatsApp Bot with Node.js</title>
+      <link>https://ameybhavsar.com/blog/whatsapp-bot</link>
+      <guid>https://ameybhavsar.com/blog/whatsapp-bot</guid>
+      <pubDate>Fri, 20 Jan 2023 00:00:00 GMT</pubDate>
+      <description>How I built a WhatsApp bot using Node.js and the WhatsApp Business API.</description>
+    </item>
+    
+    <item>
+      <title>First Post</title>
+      <link>https://ameybhavsar.com/blog/first-post</link>
+      <guid>https://ameybhavsar.com/blog/first-post</guid>
+      <pubDate>Mon, 01 Aug 2022 00:00:00 GMT</pubDate>
+      <description>The first post on my blog.</description>
+    </item>
+  </channel>
+</rss>
